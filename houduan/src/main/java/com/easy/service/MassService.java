@@ -12,5 +12,7 @@ public interface MassService {
 	Integer saveMassInfo(Mass mass);
 
 	Mass selectByPrimaryKey(String id);
+	
+	Mass getMassInfo();
 
 }

@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,13 +37,7 @@ public class MassController {
 	@Autowired
 	private ProMarketService proMarketService;
 
-	@PostMapping("/createMass")
-	@ApiOperation(value = "生成集貨信息")
-	@ApiResponses({
-	          @ApiResponse(code = 201, message = "生成成功"),
-	          @ApiResponse(code = 500, message = "接口異常"),
-	})
-	public Result<ShowMass> createMass() {
+	public ShowMass createShowMass() {
 		
 		Mass mass = new Mass();
 		ShowMass showMass = new ShowMass();
@@ -64,7 +58,7 @@ public class MassController {
 		mass.setMktId(proMarket.getMktId());
 		mass.setPicUrl("/cc");
 		
-		Integer count = massService.saveMassInfo(mass);
+		massService.saveMassInfo(mass);
 		
 		List<String> picList = new ArrayList<>();
 		
@@ -81,45 +75,38 @@ public class MassController {
 		showMass.setUseRequire(proMarket.getUseRequire());
 		showMass.setUsersPic(picList);
 		showMass.setWeightMax(proMarket.getWeightMax());
-		showMass.setWeightMax(proMarket.getWeightMin());
+		showMass.setWeightMin(proMarket.getWeightMin());
 		
-		Result<ShowMass> result = new Result<>();
-		
-		if(count>0) {
-			result.setSuccess(true);
-			result.setObj(showMass);
-		}
-		return result;
+		return showMass;
 	}
 	
-	@PostMapping("/getShowMass")
-	@ApiOperation(value = "生成集貨信息")
+	@GetMapping("/getShowMass")
+	@ApiOperation(value = "獲取集貨信息")
 	@ApiResponses({
-	          @ApiResponse(code = 201, message = "生成成功"),
+	          @ApiResponse(code = 201, message = "獲取成功"),
 	          @ApiResponse(code = 500, message = "接口異常"),
 	})
 	public Result<ShowMass> getShowMass() {
 		
-		Mass mass = new Mass();
+		Result<ShowMass> result = new Result<>();
 		ShowMass showMass = new ShowMass();
 		ProMarket proMarket = new ProMarket();
 		
 		//查詢集貨基礎表信息
-		proMarket = proMarketService.selectByPrimaryKey("e174424f-e153-11e7-83f0-00ff8ba56b27");
-		Integer round = proMarket.getGroupDuration();
+		Mass mass = massService.getMassInfo();
+		proMarket = proMarketService.selectByPrimaryKey(mass.getMktId());
 		
-		Date now = new Date();
-		Date endDate = new Date(now.getTime() + round*60*1000);
-		
-		mass.setCurrentUsers(0);
-		mass.setEndtm(endDate);
-		mass.setLowestFreight("120");
-		mass.setLowestPrice("6元/1.5KG");
-		mass.setMassType("全國團");
-		mass.setMktId(proMarket.getMktId());
-		mass.setPicUrl("/cc");
-		
-		Integer count = massService.saveMassInfo(mass);
+		if(mass == null || proMarket.getGroupLimit() <= mass.getCurrentUsers() || new Date().after(mass.getEndtm())) {
+			showMass = createShowMass();
+			if(showMass != null) {
+				result.setSuccess(true);
+				result.setObj(showMass);
+			}else {
+				result.setSuccess(false);
+				result.setMessage("获取集货信息失败");
+			}
+			return result;
+		}
 		
 		List<String> picList = new ArrayList<>();
 		
@@ -136,14 +123,10 @@ public class MassController {
 		showMass.setUseRequire(proMarket.getUseRequire());
 		showMass.setUsersPic(picList);
 		showMass.setWeightMax(proMarket.getWeightMax());
-		showMass.setWeightMax(proMarket.getWeightMin());
+		showMass.setWeightMin(proMarket.getWeightMin());
 		
-		Result<ShowMass> result = new Result<>();
-		
-		if(count>0) {
-			result.setSuccess(true);
-			result.setObj(showMass);
-		}
+		result.setSuccess(true);
+		result.setObj(showMass);
 		return result;
 	}
 
