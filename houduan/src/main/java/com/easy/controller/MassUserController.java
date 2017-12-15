@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /***
- * Created on 2017/11/3 <br>
+ * Created on 2017/12/15 <br>
  * Description: [MassUserController]<br>
  * @author easy
  * @version 1.0
@@ -40,7 +40,7 @@ public class MassUserController {
       BindingResult bindingResult) {
     //模拟用户图片
     int num = (int) (Math.random() * 10);
-    massUser.setHeadPortrait("/header/" + num + ".png ");
+    massUser.setHeadPortrait("/header/" + num + ".jpg ");
     //添加集货用户
     int insert = massUserService.insert(massUser);
     if (insert == 0) {

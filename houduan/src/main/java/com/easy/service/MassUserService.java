@@ -5,7 +5,7 @@ import java.util.List;
 import com.easy.domain.MassUser;
 
 /***
- * Created on 2017/11/8 <br>
+ * Created on 2017/12/15 <br>
  * Description: <br>
  * @author easy
  */

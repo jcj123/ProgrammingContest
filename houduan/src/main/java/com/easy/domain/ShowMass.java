@@ -4,51 +4,86 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-
+/***
+ * Created on 2017/12/15 <br>
+ * Description: 展示集货信息bean<br>
+ * @author easy
+ */
 public class ShowMass implements Serializable {
 
+  /**
+   * 主键
+   */
   private String id;
 
-  //寄貨id
+  /**
+   * 寄貨id
+   */
   private String mktId;
 
-  //最低價格
+  /**
+   * 最低價格
+   */
   private String lowestPrice;
 
-  //最低費用
+  /**
+   * 最低費用
+   */
   private String lowestFreight;
 
-  //推廣圖片
+  /**
+   * 推广图片
+   */
   private String picUrl;
 
-  //集貨類型
+  /**
+   * 集货类型
+   */
   private String massType;
 
-  //截止時間
+  /**
+   * 截止時間
+   */
   private Date endtm;
 
-  //當前人數
+  /**
+   * 當前人數
+   */
   private Integer currentUsers;
 
-  //當前人數
+  /**
+   * 當前人數
+   */
   private List<String> usersPic;
 
-  //集貨名稱
+  /**
+   * 集貨名稱
+   */
   private String mktNameShow;
 
-  //最低寄件量
+  /**
+   * 最低寄件量
+   */
   private Short dailyMinPackages;
 
-  //最小重量
+  /**
+   * 最小重量
+   */
   private BigDecimal weightMin;
 
-  //最大重量
+  /**
+   * 最大重量
+   */
   private BigDecimal weightMax;
 
-  //總名額
+  /**
+   * 總名額
+   */
   private Short groupLimit;
 
-  //使用要求
+  /**
+   * 使用要求
+   */
   private String useRequire;
 
   public String getId() {

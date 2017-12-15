@@ -63,7 +63,7 @@ public class ShareDialog extends Dialog{
         this.listener = listener;
     }
 
-    interface ShareWechatListener{
+    public interface ShareWechatListener{
         void clickShareWechat();
         void clickShareWechatGroup();
     }
