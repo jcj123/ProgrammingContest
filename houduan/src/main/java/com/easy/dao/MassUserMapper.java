@@ -1,7 +1,10 @@
 package com.easy.dao;
 
-import com.easy.domain.MassUser;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
+
+import com.easy.domain.MassUser;
 
 @Mapper
 public interface MassUserMapper {
@@ -12,6 +15,8 @@ public interface MassUserMapper {
     int insertSelective(MassUser record);
 
     MassUser selectByPrimaryKey(Integer id);
+    
+    List<String> getHeadUrlListByMassId(String MassId);
 
     int updateByPrimaryKeySelective(MassUser record);
 

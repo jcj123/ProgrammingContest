@@ -4,19 +4,25 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
+import com.google.gson.Gson;
 import com.sf.race.R;
+import com.sf.race.Utils.OkHttp3Util;
 import com.sf.race.bean.AreaBean;
 import com.sf.race.bean.CityBean;
+import com.sf.race.bean.MassUser;
 import com.sf.race.bean.ProvinceBean;
 import com.sf.race.db.DBManager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -31,10 +37,25 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
     private ArrayList<String> Provincestr = new ArrayList<>();//省
     private ArrayList<ArrayList<String>> Citystr = new ArrayList<>();//市
     private ArrayList<ArrayList<ArrayList<String>>> Areastr = new ArrayList<>();//区
+    private String massId="1";
+    private String province;
+    private String address;
+    private String userName;
+    private String phone;
+    private String sendNumber;
+    private String sendWeight;
 
     private LinearLayout ll_setlectAddress;
     private TextView tvShowAddress;
+    private EditText etInputAddress;
+    private EditText etInputName;
+    private EditText etInputPhone;
+    private EditText etInputAmount;
+    private EditText etInputWeight;
     private Button collect;
+
+    private Gson gson=new Gson();
+    private static final String URL="http://10.2.4.85:8082/mass/adduser";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +68,11 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
     private void initView() {
         ll_setlectAddress= (LinearLayout) findViewById(R.id.ll_select_address);
         tvShowAddress= (TextView) findViewById(R.id.tv_show_address);
+        etInputAddress= (EditText) findViewById(R.id.et_input_address);
+        etInputName= (EditText) findViewById(R.id.et_input_name);
+        etInputPhone= (EditText) findViewById(R.id.et_input_phone);
+        etInputAmount= (EditText) findViewById(R.id.et_input_predict_amount);
+        etInputWeight= (EditText) findViewById(R.id.et_input_average_weight);
         collect = (Button) findViewById(R.id.tv_collect);
         ll_setlectAddress.setOnClickListener(this);
         collect.setOnClickListener(this);
@@ -59,10 +85,44 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
                 showSitePickUp();
                 break;
             case R.id.tv_collect:
-
+                if (checkParams()){
+                    uploadInfo();
+                }
             default:
                 break;
         }
+    }
+
+    private void uploadInfo() {
+        MassUser user=new MassUser();
+        user.setMassId(massId);
+        user.setProvince(province);
+        user.setAddress(address);
+        user.setUserName(userName);
+        user.setPhone(phone);
+        user.setSendNumber(sendNumber);
+        user.setSendWeight(sendWeight);
+        String uploadStr=gson.toJson(user,MassUser.class);
+        try {
+            OkHttp3Util.post(URL,uploadStr);
+        } catch (IOException e) {
+            Log.e("EditInfoActivity","uploadInfo:",e);
+        }
+    }
+
+    private boolean checkParams(){
+        address=etInputAddress.getText().toString();
+        userName=etInputName.getText().toString();
+        phone=etInputPhone.getText().toString();
+        sendNumber=etInputAmount.getText().toString();
+        sendWeight=etInputWeight.getText().toString();
+        return !("".equals(massId)
+                ||"".equals(province)
+                ||"".equals(address)
+                ||"".equals(userName)
+                ||"".equals(phone)
+                ||"".equals(sendNumber)
+                ||"".equals(sendWeight));
     }
 
     private void showSitePickUp() {
@@ -127,6 +187,7 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
                 String tx = Provincestr.get(options1)
                         + Citystr.get(options1).get(option2)
                         + Areastr.get(options1).get(option2).get(options3);
+                province=tx;
                 tvShowAddress.setText(tx);
             }
         }).build();

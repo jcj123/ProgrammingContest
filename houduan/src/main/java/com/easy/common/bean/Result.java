@@ -1,14 +1,12 @@
 package com.easy.common.bean;
 
-import java.io.Serializable;
-
 /***
  * Created on 2017/12/14 <br>
  * Description: []<br>
  * @author easy
  * @version 1.0
  */
-public class Result<T> implements Serializable {
+public class Result<T> {
 
   private boolean success = false;
   private int status;

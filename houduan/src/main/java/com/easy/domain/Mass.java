@@ -1,85 +1,87 @@
 package com.easy.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Mass {
-    private String id;
+public class Mass implements Serializable {
 
-    private String mktId;
+  private String id;
 
-    private String lowestPrice;
+  private String mktId;
 
-    private String lowestFreight;
+  private String lowestPrice;
 
-    private String picUrl;
+  private String lowestFreight;
 
-    private String massType;
+  private String picUrl;
 
-    private Date endtm;
+  private String massType;
 
-    private Integer currentUsers;
+  private Date endtm;
 
-    public String getId() {
-        return id;
-    }
+  private Integer currentUsers;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public String getMktId() {
-        return mktId;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public void setMktId(String mktId) {
-        this.mktId = mktId;
-    }
+  public String getMktId() {
+    return mktId;
+  }
 
-    public String getLowestPrice() {
-        return lowestPrice;
-    }
+  public void setMktId(String mktId) {
+    this.mktId = mktId;
+  }
 
-    public void setLowestPrice(String lowestPrice) {
-        this.lowestPrice = lowestPrice;
-    }
+  public String getLowestPrice() {
+    return lowestPrice;
+  }
 
-    public String getLowestFreight() {
-        return lowestFreight;
-    }
+  public void setLowestPrice(String lowestPrice) {
+    this.lowestPrice = lowestPrice;
+  }
 
-    public void setLowestFreight(String lowestFreight) {
-        this.lowestFreight = lowestFreight;
-    }
+  public String getLowestFreight() {
+    return lowestFreight;
+  }
 
-    public String getPicUrl() {
-        return picUrl;
-    }
+  public void setLowestFreight(String lowestFreight) {
+    this.lowestFreight = lowestFreight;
+  }
 
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
-    }
+  public String getPicUrl() {
+    return picUrl;
+  }
 
-    public String getMassType() {
-        return massType;
-    }
+  public void setPicUrl(String picUrl) {
+    this.picUrl = picUrl;
+  }
 
-    public void setMassType(String massType) {
-        this.massType = massType;
-    }
+  public String getMassType() {
+    return massType;
+  }
 
-    public Date getEndtm() {
-        return endtm;
-    }
+  public void setMassType(String massType) {
+    this.massType = massType;
+  }
 
-    public void setEndtm(Date endtm) {
-        this.endtm = endtm;
-    }
+  public Date getEndtm() {
+    return endtm;
+  }
 
-    public Integer getCurrentUsers() {
-        return currentUsers;
-    }
+  public void setEndtm(Date endtm) {
+    this.endtm = endtm;
+  }
 
-    public void setCurrentUsers(Integer currentUsers) {
-        this.currentUsers = currentUsers;
-    }
+  public Integer getCurrentUsers() {
+    return currentUsers;
+  }
+
+  public void setCurrentUsers(Integer currentUsers) {
+    this.currentUsers = currentUsers;
+  }
 }
