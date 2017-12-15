@@ -71,14 +71,15 @@
         android:maxLines="2"
         android:maxEms="12"
         android:layout_gravity="center_horizontal"
-        android:textSize="@dimen/dimen4" />
+        android:textSize="@dimen/dimen3" />
     <Button
         android:layout_width="300dp"
         android:layout_height="56dp"
         android:layout_marginTop="24dp"
         android:layout_gravity="center_horizontal"
-        android:background="@color/color1"
-        android:textColor="@color/color6"
+        android:background="@drawable/share_button"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/dimen0"
         android:text="保存分享小程序码"
         />
     <TextView
@@ -89,5 +90,5 @@
         android:maxLines="2"
         android:maxEms="12"
         android:layout_gravity="center_horizontal"
-        android:textSize="@dimen/dimen6" />
+        android:textSize="@dimen/dimen5" />
 </LinearLayout>
