@@ -97,6 +97,13 @@
         android:paddingTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <com.sf.race.view.CustomProgressBar
+            android:id="@+id/cpb"
+            android:layout_width="220dp"
+            android:layout_height="20dp"
+            app:progress_color="@color/color1"
+            app:progress_background_color="@color/color7"
+            />
         <TextView
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -143,7 +150,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/main_attention"
                 android:layout_width="20dp"
                 android:layout_height="20dp" />
             <TextView
