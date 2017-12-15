@@ -1,10 +1,12 @@
 package com.sf.race.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -18,6 +20,8 @@ import com.sf.race.Utils.SearchResultUtil;
 import com.sf.race.bean.MainBean;
 
 import butterknife.ButterKnife;
+
+import static com.sf.race.activity.EditInfoActivity.PARAM_MASS_ID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
         tvFive=(TextView) findViewById(R.id.tv_five);
         tvSix=(TextView) findViewById(R.id.tv_six);
         tvSeven=(TextView) findViewById(R.id.tv_seven);
-        tvNine=(TextView) findViewById(R.id.tv_nine);
+        button=(Button)findViewById(R.id.button);
+
         initData();
 
     }
@@ -65,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         if (finalMainBean != null) {
-                            MainBean.ObjBean objBean=finalMainBean.getObj();
+                            final MainBean.ObjBean objBean=finalMainBean.getObj();
                             tvTitle.setText(objBean.getMktNameShow());
                             SpannableString s1= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),String.valueOf(objBean.getDailyMinPackages()),String.valueOf(objBean.getDailyMinPackages()));
                             tvWeight.setText(String.valueOf(objBean.getWeightMin())+"_"+String.valueOf(objBean.getWeightMax()+"  "+"每日最低需寄"+s1+"件"));
@@ -80,6 +85,15 @@ public class MainActivity extends AppCompatActivity {
                             SpannableString s5= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),String.valueOf(objBean.getCurrentUsers()),String.valueOf(objBean.getCurrentUsers()));
 
                             tvNine.setText("已有"+s5+"人参团");
+                            button.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent=new Intent(MainActivity.this,EditInfoActivity.class);
+                                    intent.putExtra(PARAM_MASS_ID,objBean.getId());
+                                    startActivityForResult(intent,1);
+
+                                }
+                            });
 
 
 
