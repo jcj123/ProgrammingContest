@@ -7,6 +7,6 @@ spring:
         driverClass: com.mysql.jdbc.Driver
         url: jdbc:mysql://127.0.0.1/demo?useUnicode=true&characterEncoding=UTF-8&useSSL=false
         username: root
-        password: 1234ROOT.mysql
+        password: 123456
 
 
