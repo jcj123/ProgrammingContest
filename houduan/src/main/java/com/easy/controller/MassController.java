@@ -66,25 +66,8 @@ public class MassController {
 		mass = massService.getMassInfo();
 		
 		List<String> picList = new ArrayList<>();
-		String userRequire = proMarket.getUseRequire();
 		
-		showMass.setId(mass.getId());
-		showMass.setCurrentUsers(mass.getCurrentUsers());
-		showMass.setDailyMinPackages(proMarket.getDailyMinPackages());;
-		showMass.setEndtm(mass.getEndtm());
-		showMass.setGroupLimit(proMarket.getGroupLimit());
-		showMass.setLowestFreight(mass.getLowestFreight());
-		showMass.setLowestPrice(mass.getLowestPrice());
-		showMass.setMassType(mass.getMassType());
-		showMass.setMktId(mass.getMktId());
-		showMass.setMktNameShow(proMarket.getMktNameShow());
-		showMass.setPicUrl(mass.getPicUrl());
-		
-		userRequire = String.format(userRequire, proMarket.getDailyMinPackages(), mass.getLowestFreight());
-		showMass.setUseRequire(userRequire);
-		showMass.setUsersPic(picList);
-		showMass.setWeightMax(proMarket.getWeightMax());
-		showMass.setWeightMin(proMarket.getWeightMin());
+		setShowMass(showMass, proMarket, mass, picList);
 		
 		return showMass;
 	}
@@ -99,13 +82,13 @@ public class MassController {
 		
 		Result<ShowMass> result = new Result<>();
 		ShowMass showMass = new ShowMass();
-		ProMarket proMarket = new ProMarket();
+		ProMarket proMarket;
 		
 		//查詢集貨基礎表信息
 		Mass mass = massService.getMassInfo();
 		proMarket = proMarketService.selectByPrimaryKey(mass.getMktId());
 		
-		if(mass == null || proMarket.getGroupLimit() <= mass.getCurrentUsers() || new Date().after(mass.getEndtm())) {
+		if(proMarket.getGroupLimit() <= mass.getCurrentUsers() || new Date().after(mass.getEndtm())) {
 			showMass = createShowMass();
 			if(showMass != null) {
 				result.setSuccess(true);
@@ -118,6 +101,16 @@ public class MassController {
 		}
 		
 		List<String> picList = massUserService.getHeadUrlListByMassId(mass.getId());
+		
+		setShowMass(showMass, proMarket, mass, picList);
+		
+		result.setSuccess(true);
+		result.setObj(showMass);
+		return result;
+	}
+
+	private void setShowMass(ShowMass showMass, ProMarket proMarket, Mass mass, List<String> picList) {
+		
 		String userRequire = proMarket.getUseRequire();
 		
 		showMass.setId(mass.getId());
@@ -137,10 +130,6 @@ public class MassController {
 		showMass.setUsersPic(picList);
 		showMass.setWeightMax(proMarket.getWeightMax());
 		showMass.setWeightMin(proMarket.getWeightMin());
-		
-		result.setSuccess(true);
-		result.setObj(showMass);
-		return result;
 	}
 
 }
