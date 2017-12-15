@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.easy.dao.MassMapper" >
+  <resultMap id="BaseResultMap" type="com.easy.domain.Mass" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="mkt_id" property="mktId" jdbcType="VARCHAR" />
+    <result column="lowest_price" property="lowestPrice" jdbcType="VARCHAR" />
+    <result column="lowest_freight" property="lowestFreight" jdbcType="VARCHAR" />
+    <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+    <result column="mass_type" property="massType" jdbcType="VARCHAR" />
+    <result column="endTm" property="endtm" jdbcType="TIMESTAMP" />
+    <result column="current_users" property="currentUsers" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mkt_id, lowest_price, lowest_freight, pic_url, mass_type, endTm, current_users
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from mass_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from mass_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.easy.domain.Mass" >
+    insert into mass_info (id, mkt_id, lowest_price, 
+      lowest_freight, pic_url, mass_type, 
+      endTm, current_users)
+    values (#{id,jdbcType=VARCHAR}, #{mktId,jdbcType=VARCHAR}, #{lowestPrice,jdbcType=VARCHAR}, 
+      #{lowestFreight,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR}, #{massType,jdbcType=VARCHAR}, 
+      #{endtm,jdbcType=TIMESTAMP}, #{currentUsers,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.easy.domain.Mass" >
+    insert into mass_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mktId != null" >
+        mkt_id,
+      </if>
+      <if test="lowestPrice != null" >
+        lowest_price,
+      </if>
+      <if test="lowestFreight != null" >
+        lowest_freight,
+      </if>
+      <if test="picUrl != null" >
+        pic_url,
+      </if>
+      <if test="massType != null" >
+        mass_type,
+      </if>
+      <if test="endtm != null" >
+        endTm,
+      </if>
+      <if test="currentUsers != null" >
+        current_users,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mktId != null" >
+        #{mktId,jdbcType=VARCHAR},
+      </if>
+      <if test="lowestPrice != null" >
+        #{lowestPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="lowestFreight != null" >
+        #{lowestFreight,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null" >
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="massType != null" >
+        #{massType,jdbcType=VARCHAR},
+      </if>
+      <if test="endtm != null" >
+        #{endtm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currentUsers != null" >
+        #{currentUsers,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.easy.domain.Mass" >
+    update mass_info
+    <set >
+      <if test="mktId != null" >
+        mkt_id = #{mktId,jdbcType=VARCHAR},
+      </if>
+      <if test="lowestPrice != null" >
+        lowest_price = #{lowestPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="lowestFreight != null" >
+        lowest_freight = #{lowestFreight,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null" >
+        pic_url = #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="massType != null" >
+        mass_type = #{massType,jdbcType=VARCHAR},
+      </if>
+      <if test="endtm != null" >
+        endTm = #{endtm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currentUsers != null" >
+        current_users = #{currentUsers,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.easy.domain.Mass" >
+    update mass_info
+    set mkt_id = #{mktId,jdbcType=VARCHAR},
+      lowest_price = #{lowestPrice,jdbcType=VARCHAR},
+      lowest_freight = #{lowestFreight,jdbcType=VARCHAR},
+      pic_url = #{picUrl,jdbcType=VARCHAR},
+      mass_type = #{massType,jdbcType=VARCHAR},
+      endTm = #{endtm,jdbcType=TIMESTAMP},
+      current_users = #{currentUsers,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
