@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.easy.dao.ProMarketMapper" >
+  <resultMap id="BaseResultMap" type="com.easy.domain.ProMarket" >
+    <id column="MKT_ID" property="mktId" jdbcType="VARCHAR" />
+    <result column="MKT_NAME_SHOW" property="mktNameShow" jdbcType="VARCHAR" />
+    <result column="DAILY_MIN_PACKAGES" property="dailyMinPackages" jdbcType="SMALLINT" />
+    <result column="WEIGHT_MIN" property="weightMin" jdbcType="DECIMAL" />
+    <result column="WEIGHT_MAX" property="weightMax" jdbcType="DECIMAL" />
+    <result column="BASE_PRICE" property="basePrice" jdbcType="DECIMAL" />
+    <result column="BASE_WEIGHT" property="baseWeight" jdbcType="DECIMAL" />
+    <result column="GROUP_LIMIT" property="groupLimit" jdbcType="SMALLINT" />
+    <result column="GROUP_DURATION" property="groupDuration" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.easy.domain.ProMarket" extends="BaseResultMap" >
+    <result column="USE_REQUIRE" property="useRequire" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MKT_ID, MKT_NAME_SHOW, DAILY_MIN_PACKAGES, WEIGHT_MIN, WEIGHT_MAX, BASE_PRICE, BASE_WEIGHT, 
+    GROUP_LIMIT, GROUP_DURATION
+  </sql>
+  <sql id="Blob_Column_List" >
+    USE_REQUIRE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pro_market_base
+    where MKT_ID = #{mktId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from pro_market_base
+    where MKT_ID = #{mktId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.easy.domain.ProMarket" >
+    insert into pro_market_base (MKT_ID, MKT_NAME_SHOW, DAILY_MIN_PACKAGES, 
+      WEIGHT_MIN, WEIGHT_MAX, BASE_PRICE, 
+      BASE_WEIGHT, GROUP_LIMIT, GROUP_DURATION, 
+      USE_REQUIRE)
+    values (UUID(), #{mktNameShow,jdbcType=VARCHAR}, #{dailyMinPackages,jdbcType=SMALLINT},
+      #{weightMin,jdbcType=DECIMAL}, #{weightMax,jdbcType=DECIMAL}, #{basePrice,jdbcType=DECIMAL}, 
+      #{baseWeight,jdbcType=DECIMAL}, #{groupLimit,jdbcType=SMALLINT}, #{groupDuration,jdbcType=TINYINT}, 
+      #{useRequire,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.easy.domain.ProMarket" >
+    insert into pro_market_base
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mktId != null" >
+        MKT_ID,
+      </if>
+      <if test="mktNameShow != null" >
+        MKT_NAME_SHOW,
+      </if>
+      <if test="dailyMinPackages != null" >
+        DAILY_MIN_PACKAGES,
+      </if>
+      <if test="weightMin != null" >
+        WEIGHT_MIN,
+      </if>
+      <if test="weightMax != null" >
+        WEIGHT_MAX,
+      </if>
+      <if test="basePrice != null" >
+        BASE_PRICE,
+      </if>
+      <if test="baseWeight != null" >
+        BASE_WEIGHT,
+      </if>
+      <if test="groupLimit != null" >
+        GROUP_LIMIT,
+      </if>
+      <if test="groupDuration != null" >
+        GROUP_DURATION,
+      </if>
+      <if test="useRequire != null" >
+        USE_REQUIRE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mktId != null" >
+        #{mktId,jdbcType=VARCHAR},
+      </if>
+      <if test="mktNameShow != null" >
+        #{mktNameShow,jdbcType=VARCHAR},
+      </if>
+      <if test="dailyMinPackages != null" >
+        #{dailyMinPackages,jdbcType=SMALLINT},
+      </if>
+      <if test="weightMin != null" >
+        #{weightMin,jdbcType=DECIMAL},
+      </if>
+      <if test="weightMax != null" >
+        #{weightMax,jdbcType=DECIMAL},
+      </if>
+      <if test="basePrice != null" >
+        #{basePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="baseWeight != null" >
+        #{baseWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="groupLimit != null" >
+        #{groupLimit,jdbcType=SMALLINT},
+      </if>
+      <if test="groupDuration != null" >
+        #{groupDuration,jdbcType=TINYINT},
+      </if>
+      <if test="useRequire != null" >
+        #{useRequire,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.easy.domain.ProMarket" >
+    update pro_market_base
+    <set >
+      <if test="mktNameShow != null" >
+        MKT_NAME_SHOW = #{mktNameShow,jdbcType=VARCHAR},
+      </if>
+      <if test="dailyMinPackages != null" >
+        DAILY_MIN_PACKAGES = #{dailyMinPackages,jdbcType=SMALLINT},
+      </if>
+      <if test="weightMin != null" >
+        WEIGHT_MIN = #{weightMin,jdbcType=DECIMAL},
+      </if>
+      <if test="weightMax != null" >
+        WEIGHT_MAX = #{weightMax,jdbcType=DECIMAL},
+      </if>
+      <if test="basePrice != null" >
+        BASE_PRICE = #{basePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="baseWeight != null" >
+        BASE_WEIGHT = #{baseWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="groupLimit != null" >
+        GROUP_LIMIT = #{groupLimit,jdbcType=SMALLINT},
+      </if>
+      <if test="groupDuration != null" >
+        GROUP_DURATION = #{groupDuration,jdbcType=TINYINT},
+      </if>
+      <if test="useRequire != null" >
+        USE_REQUIRE = #{useRequire,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where MKT_ID = #{mktId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.easy.domain.ProMarket" >
+    update pro_market_base
+    set MKT_NAME_SHOW = #{mktNameShow,jdbcType=VARCHAR},
+      DAILY_MIN_PACKAGES = #{dailyMinPackages,jdbcType=SMALLINT},
+      WEIGHT_MIN = #{weightMin,jdbcType=DECIMAL},
+      WEIGHT_MAX = #{weightMax,jdbcType=DECIMAL},
+      BASE_PRICE = #{basePrice,jdbcType=DECIMAL},
+      BASE_WEIGHT = #{baseWeight,jdbcType=DECIMAL},
+      GROUP_LIMIT = #{groupLimit,jdbcType=SMALLINT},
+      GROUP_DURATION = #{groupDuration,jdbcType=TINYINT},
+      USE_REQUIRE = #{useRequire,jdbcType=LONGVARCHAR}
+    where MKT_ID = #{mktId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.easy.domain.ProMarket" >
+    update pro_market_base
+    set MKT_NAME_SHOW = #{mktNameShow,jdbcType=VARCHAR},
+      DAILY_MIN_PACKAGES = #{dailyMinPackages,jdbcType=SMALLINT},
+      WEIGHT_MIN = #{weightMin,jdbcType=DECIMAL},
+      WEIGHT_MAX = #{weightMax,jdbcType=DECIMAL},
+      BASE_PRICE = #{basePrice,jdbcType=DECIMAL},
+      BASE_WEIGHT = #{baseWeight,jdbcType=DECIMAL},
+      GROUP_LIMIT = #{groupLimit,jdbcType=SMALLINT},
+      GROUP_DURATION = #{groupDuration,jdbcType=TINYINT}
+    where MKT_ID = #{mktId,jdbcType=VARCHAR}
+  </update>
+</mapper>
