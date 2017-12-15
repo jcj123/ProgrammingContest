@@ -47,9 +47,6 @@ public class ShowMass {
     //總名額
     private Short groupLimit;
 
-    //集貨週期
-    private Byte groupDuration;
-
     //使用要求
     private String useRequire;
 
@@ -163,14 +160,6 @@ public class ShowMass {
 
 	public void setGroupLimit(Short groupLimit) {
 		this.groupLimit = groupLimit;
-	}
-
-	public Byte getGroupDuration() {
-		return groupDuration;
-	}
-
-	public void setGroupDuration(Byte groupDuration) {
-		this.groupDuration = groupDuration;
 	}
 
 	public String getUseRequire() {

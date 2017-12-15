@@ -12,6 +12,8 @@ public interface MassMapper {
     int insertSelective(Mass record);
 
     Mass selectByPrimaryKey(String id);
+    
+    Mass getMassInfo();
 
     int updateByPrimaryKeySelective(Mass record);
 
