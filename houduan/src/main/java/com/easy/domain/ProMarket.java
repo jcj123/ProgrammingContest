@@ -19,7 +19,7 @@ public class ProMarket {
 
     private Short groupLimit;
 
-    private Byte groupDuration;
+    private Integer groupDuration;
 
     private String useRequire;
 
@@ -87,11 +87,11 @@ public class ProMarket {
         this.groupLimit = groupLimit;
     }
 
-    public Byte getGroupDuration() {
+    public Integer getGroupDuration() {
         return groupDuration;
     }
 
-    public void setGroupDuration(Byte groupDuration) {
+    public void setGroupDuration(Integer groupDuration) {
         this.groupDuration = groupDuration;
     }
 

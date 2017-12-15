@@ -2,4 +2,5 @@
     <string name="app_name">Race</string>
     <string name="action_settings">Settings</string>
     <string name="main_title">集货详情</string>
+    <string name="main_rule">2.承诺使用周期内提前终止寄件视为违约行为。\n3.集货周期内未达到目标则自动取消集货。\n4.用户需自行完成打包并贴好面单。\n5.每日在约定时间内进行一次交件，不支持随寄随收。\n6.按月结算运费，不支持现寄现结。</string>
 </resources>
