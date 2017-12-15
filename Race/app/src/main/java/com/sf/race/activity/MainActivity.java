@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                             String[] front=objBean.getUseRequire().split("）");
                             SpannableString s3= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),String.valueOf(objBean.getDailyMinPackages()),String.valueOf(front[0]));
                             SpannableString s4= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),String.valueOf(objBean.getLowestFreight()),String.valueOf(front[1]));
-                            tvSeven.setText(s3.toString()+s4);
+                            tvSeven.setText(objBean.getUseRequire());
                             SpannableString s5= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),"已有"+String.valueOf(objBean.getCurrentUsers())+"人参团",String.valueOf(objBean.getCurrentUsers()));
 
                             tvNine.setText(s5);
