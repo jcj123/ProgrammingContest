@@ -1,93 +1,95 @@
 package com.easy.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class MassUser {
-    private Integer id;
 
-    private String massId;
+  private Integer id;
+  @NotEmpty(message = "集货信息id不能为空")
+  private String massId;
+  @NotEmpty(message = "寄件省市信息不能为空")
+  private String province;
+  @NotEmpty(message = "寄件地址详情不能为空")
+  private String address;
+  @NotEmpty(message = "寄件人姓名不能为空")
+  private String userName;
+  @NotEmpty(message = "寄件人手机不能为空")
+  private String phone;
+  private String headPortrait;
+  @NotEmpty(message = "预估每日寄件量不能为空")
+  private String sendNumber;
+  @NotEmpty(message = "单件平均重量不能为空")
+  private String sendWeight;
 
-    private String province;
+  public Integer getId() {
+    return id;
+  }
 
-    private String address;
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    private String userName;
+  public String getMassId() {
+    return massId;
+  }
 
-    private String phone;
+  public void setMassId(String massId) {
+    this.massId = massId;
+  }
 
-    private String headPortrait;
+  public String getProvince() {
+    return province;
+  }
 
-    private String sendNumber;
+  public void setProvince(String province) {
+    this.province = province;
+  }
 
-    private String sendWeight;
+  public String getAddress() {
+    return address;
+  }
 
-    public Integer getId() {
-        return id;
-    }
+  public void setAddress(String address) {
+    this.address = address;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public String getUserName() {
+    return userName;
+  }
 
-    public String getMassId() {
-        return massId;
-    }
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
 
-    public void setMassId(String massId) {
-        this.massId = massId;
-    }
+  public String getPhone() {
+    return phone;
+  }
 
-    public String getProvince() {
-        return province;
-    }
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
 
-    public void setProvince(String province) {
-        this.province = province;
-    }
+  public String getHeadPortrait() {
+    return headPortrait;
+  }
 
-    public String getAddress() {
-        return address;
-    }
+  public void setHeadPortrait(String headPortrait) {
+    this.headPortrait = headPortrait;
+  }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+  public String getSendNumber() {
+    return sendNumber;
+  }
 
-    public String getUserName() {
-        return userName;
-    }
+  public void setSendNumber(String sendNumber) {
+    this.sendNumber = sendNumber;
+  }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+  public String getSendWeight() {
+    return sendWeight;
+  }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getHeadPortrait() {
-        return headPortrait;
-    }
-
-    public void setHeadPortrait(String headPortrait) {
-        this.headPortrait = headPortrait;
-    }
-
-    public String getSendNumber() {
-        return sendNumber;
-    }
-
-    public void setSendNumber(String sendNumber) {
-        this.sendNumber = sendNumber;
-    }
-
-    public String getSendWeight() {
-        return sendWeight;
-    }
-
-    public void setSendWeight(String sendWeight) {
-        this.sendWeight = sendWeight;
-    }
+  public void setSendWeight(String sendWeight) {
+    this.sendWeight = sendWeight;
+  }
 }

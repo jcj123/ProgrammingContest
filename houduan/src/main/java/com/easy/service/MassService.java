@@ -10,4 +10,7 @@ import com.easy.domain.Mass;
 public interface MassService {
 	
 	Integer saveMassInfo(Mass mass);
+
+	Mass selectByPrimaryKey(String id);
+
 }
