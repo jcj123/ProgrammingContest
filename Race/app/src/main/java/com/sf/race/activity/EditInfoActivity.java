@@ -1,5 +1,6 @@
 package com.sf.race.activity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -11,11 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.google.gson.Gson;
 import com.sf.race.R;
-import com.sf.race.Utils.OkHttp3Util;
 import com.sf.race.bean.AreaBean;
 import com.sf.race.bean.CityBean;
 import com.sf.race.bean.MassUser;
@@ -24,6 +25,14 @@ import com.sf.race.db.DBManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * Created by lxb on 2017-12-15.
@@ -37,7 +46,7 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
     private ArrayList<String> Provincestr = new ArrayList<>();//省
     private ArrayList<ArrayList<String>> Citystr = new ArrayList<>();//市
     private ArrayList<ArrayList<ArrayList<String>>> Areastr = new ArrayList<>();//区
-    private String massId="1";
+    private String massId;
     private String province;
     private String address;
     private String userName;
@@ -52,10 +61,12 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
     private EditText etInputPhone;
     private EditText etInputAmount;
     private EditText etInputWeight;
-    private Button collect;
 
     private Gson gson=new Gson();
     private static final String URL="http://10.2.4.85:8082/mass/adduser";
+    private static final MediaType JSON
+            = MediaType.parse("application/json; charset=utf-8");
+    public static final String PARAM_MASS_ID="mass_id";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +74,7 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.edit_info_aty);
         initView();
+        getIntentData();
     }
 
     private void initView() {
@@ -73,7 +85,7 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
         etInputPhone= (EditText) findViewById(R.id.et_input_phone);
         etInputAmount= (EditText) findViewById(R.id.et_input_predict_amount);
         etInputWeight= (EditText) findViewById(R.id.et_input_average_weight);
-        collect = (Button) findViewById(R.id.tv_collect);
+        Button collect = (Button) findViewById(R.id.tv_collect);
         ll_setlectAddress.setOnClickListener(this);
         collect.setOnClickListener(this);
     }
@@ -93,6 +105,11 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    private void getIntentData(){
+        Intent intent=getIntent();
+        massId=intent.getStringExtra(PARAM_MASS_ID);
+    }
+
     private void uploadInfo() {
         MassUser user=new MassUser();
         user.setMassId(massId);
@@ -104,10 +121,31 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
         user.setSendWeight(sendWeight);
         String uploadStr=gson.toJson(user,MassUser.class);
         try {
-            OkHttp3Util.post(URL,uploadStr);
+            doPost(URL,uploadStr);
         } catch (IOException e) {
             Log.e("EditInfoActivity","uploadInfo:",e);
         }
+    }
+
+    private void doPost(String url,String json)throws IOException{
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Toast.makeText(EditInfoActivity.this,"报名失败",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                setResult(RESULT_OK);
+                finish();
+            }
+        });
     }
 
     private boolean checkParams(){
@@ -122,6 +160,7 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
                 ||"".equals(userName)
                 ||"".equals(phone)
                 ||"".equals(sendNumber)
+                ||Integer.parseInt(sendNumber)<20
                 ||"".equals(sendWeight));
     }
 
