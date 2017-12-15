@@ -1,8 +1,9 @@
 package com.easy.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class ProMarket {
+public class ProMarket implements Serializable {
 
   private String mktId;
 
