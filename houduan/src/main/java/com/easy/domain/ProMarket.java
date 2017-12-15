@@ -3,26 +3,61 @@ package com.easy.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+/***
+ * Created on 2017/12/15 <br>
+ * Description: 专业市场基本信息<br>
+ * @author easy
+ */
 public class ProMarket implements Serializable {
 
+  /**
+   * 专业市场ID
+   */
   private String mktId;
 
+  /**
+   * 市场外部名称
+   */
   private String mktNameShow;
 
+  /**
+   * 单客日均最小件量
+   */
   private Short dailyMinPackages;
 
+  /**
+   * 重量区间（最小）
+   */
   private BigDecimal weightMin;
 
+  /**
+   * 重量区间（最大）
+   */
   private BigDecimal weightMax;
 
+  /**
+   * 首重价格
+   */
   private BigDecimal basePrice;
 
+  /**
+   * 首重重量
+   */
   private BigDecimal baseWeight;
 
+  /**
+   * 成团人数
+   */
   private Short groupLimit;
 
+  /**
+   * 拼团周期
+   */
   private Integer groupDuration;
 
+  /**
+   * 使用要求
+   */
   private String useRequire;
 
   public String getMktId() {

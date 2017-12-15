@@ -9,8 +9,8 @@ import com.easy.domain.Mass;
 import com.easy.service.MassService;
 
 /***
- * Created on 2017/11/8 <br>
- * Description: <br>
+ * Created on 2017/12/15 <br>
+ * Description: 集货信息服务<br>
  * @author easy
  */
 @Service
