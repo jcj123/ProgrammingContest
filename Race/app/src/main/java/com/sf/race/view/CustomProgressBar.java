@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.google.zxing.common.StringUtils;
 import com.sf.race.R;
 
 /**
