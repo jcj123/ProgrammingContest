@@ -5,34 +5,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.sf.race.activity.MainActivity">
-
-    <android.support.design.widget.AppBarLayout
+    <RelativeLayout
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:background="@color/color1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="@color/color13"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="@string/main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+    <RelativeLayout
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:background="@drawable/main_double_shape"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/color1"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-           >
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TextView
-                    android:textSize="@dimen/dimen1"
-                    android:gravity="center"
-                    android:text="@string/main_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"/>
-            </RelativeLayout>
+            android:layout_height="5dp"
+            android:layout_centerInParent="true"
+            />
+        <TextView
+            android:text="鞋服专送大酬宾"
+            android:textColor="@color/color1"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
 
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
+    </RelativeLayout>
 
 
 

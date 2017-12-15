@@ -16,12 +16,17 @@ import com.easy.service.MassService;
 @Service
 public class MassServiceImpl implements MassService {
 
-	@Autowired
-	private MassMapper massMapper;
-	
-	@Override
-	public Integer saveMassInfo(Mass mass) {
-		return massMapper.insert(mass);
-	}
+  @Autowired
+  private MassMapper massMapper;
+
+  @Override
+  public Integer saveMassInfo(Mass mass) {
+    return massMapper.insert(mass);
+  }
+
+  @Override
+  public Mass selectByPrimaryKey(String id) {
+    return massMapper.selectByPrimaryKey(id);
+  }
 
 }
