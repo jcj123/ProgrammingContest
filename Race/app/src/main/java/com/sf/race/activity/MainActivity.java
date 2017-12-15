@@ -18,6 +18,7 @@ import com.sf.race.R;
 import com.sf.race.Utils.HttpHelper;
 import com.sf.race.Utils.SearchResultUtil;
 import com.sf.race.bean.MainBean;
+import com.sf.race.view.ShareDialog;
 
 import butterknife.ButterKnife;
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvNine;
     Button button;
     RelativeLayout llShare;
-
+    public static final String QCODEString = "qcode";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         tvFive=(TextView) findViewById(R.id.tv_five);
         tvSix=(TextView) findViewById(R.id.tv_six);
         tvSeven=(TextView) findViewById(R.id.tv_seven);
+        tvNine=(TextView) findViewById(R.id.tv_nine);
+
         button=(Button)findViewById(R.id.button);
 
         initData();
@@ -103,33 +106,28 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
 
-//        OkHttp3Util.get("http://10.2.4.85:8082/Mass/getShowMass", new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                Log.e("failure",String.valueOf(e));
-//
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                String s=response.body().toString();
-//                Log.e("succ",s);
-//                MainBean mainBean;
-//                mainBean= new Gson().fromJson(s,MainBean.class);
-//                final MainBean finalMainBean = mainBean;
-//                MainActivity.this.runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        if (finalMainBean !=null){
-//                            tvTitle.setText(finalMainBean.getEndtm());
-//                        }
-//                    }
-//                });
-//
-//            }
-//        });
 
+
+}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            ShareDialog dialog = new ShareDialog(this);
+            dialog.show();
+            dialog.setListener(new ShareDialog.ShareWechatListener() {
+                @Override
+                public void clickShareWechat() {
+                    Intent intent = new Intent(MainActivity.this,ShareActivity.class);
+                    intent.putExtra(QCODEString,"123");
+                    startActivity(intent);
+                }
+
+                @Override
+                public void clickShareWechatGroup() {
+
+                }
+            });
+        }
     }
-
-
 }
