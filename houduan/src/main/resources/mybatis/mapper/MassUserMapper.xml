@@ -30,7 +30,7 @@
       address, user_name, phone, 
       head_portrait, send_number, send_weight
       )
-    values (#{id,jdbcType=INTEGER}, #{massId,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+    values (UUID(), #{massId,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
       #{address,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{headPortrait,jdbcType=VARCHAR}, #{sendNumber,jdbcType=VARCHAR}, #{sendWeight,jdbcType=VARCHAR}
       )

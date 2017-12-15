@@ -39,7 +39,7 @@
       WEIGHT_MIN, WEIGHT_MAX, BASE_PRICE, 
       BASE_WEIGHT, GROUP_LIMIT, GROUP_DURATION, 
       USE_REQUIRE)
-    values (#{mktId,jdbcType=VARCHAR}, #{mktNameShow,jdbcType=VARCHAR}, #{dailyMinPackages,jdbcType=SMALLINT}, 
+    values (UUID(), #{mktNameShow,jdbcType=VARCHAR}, #{dailyMinPackages,jdbcType=SMALLINT},
       #{weightMin,jdbcType=DECIMAL}, #{weightMax,jdbcType=DECIMAL}, #{basePrice,jdbcType=DECIMAL}, 
       #{baseWeight,jdbcType=DECIMAL}, #{groupLimit,jdbcType=SMALLINT}, #{groupDuration,jdbcType=TINYINT}, 
       #{useRequire,jdbcType=LONGVARCHAR})

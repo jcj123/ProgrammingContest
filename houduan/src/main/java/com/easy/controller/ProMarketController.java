@@ -3,8 +3,11 @@ package com.easy.controller;
 
 import com.easy.common.bean.Result;
 import com.easy.common.until.ResultUtil;
-import org.springframework.validation.BindingResult;
+import com.easy.domain.ProMarket;
+import com.easy.service.ProMarketService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,11 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/proMarket")
 public class ProMarketController {
 
+  @Autowired
+  ProMarketService proMarketService;
 
-
-  @PostMapping
-  public Result<Object> create(BindingResult bindingResult) {
-    return ResultUtil.success(null);
+  @PostMapping("/creat")
+  public Result<Boolean> create(@RequestBody ProMarket proMarket) {
+    proMarketService.insert(proMarket);
+    return ResultUtil.success(true);
   }
 
 
