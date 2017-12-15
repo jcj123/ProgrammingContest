@@ -75,19 +75,19 @@ public class MainActivity extends AppCompatActivity {
                         if (finalMainBean != null) {
                             final MainBean.ObjBean objBean=finalMainBean.getObj();
                             tvTitle.setText(objBean.getMktNameShow());
-                            SpannableString s1= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),String.valueOf(objBean.getDailyMinPackages()),String.valueOf(objBean.getDailyMinPackages()));
-                            tvWeight.setText(String.valueOf(objBean.getWeightMin())+"_"+String.valueOf(objBean.getWeightMax()+"  "+"每日最低需寄"+s1+"件"));
+                            SpannableString s1= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),String.valueOf(objBean.getWeightMin())+"_"+String.valueOf(objBean.getWeightMax()+"  "+"每日最低需寄"+String.valueOf(objBean.getDailyMinPackages())+"件"),String.valueOf(objBean.getDailyMinPackages()));
+                            tvWeight.setText(s1);
                             tvOne.setText(objBean.getLowestPrice());
-                            SpannableString s2= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),String.valueOf(objBean.getGroupLimit()-objBean.getCurrentUsers()),String.valueOf(objBean.getGroupLimit()-objBean.getCurrentUsers()));
-                            tvFive.setText("还差"+s2+"人即可成团");
+                            SpannableString s2= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),"还差"+String.valueOf(objBean.getGroupLimit()-objBean.getCurrentUsers())+"人即可成团",String.valueOf(objBean.getGroupLimit()-objBean.getCurrentUsers()));
+                            tvFive.setText(s2);
                             tvSix.setText("截止日期："+objBean.getEndtm());
                             String[] front=objBean.getUseRequire().split("）");
                             SpannableString s3= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),String.valueOf(objBean.getDailyMinPackages()),String.valueOf(front[0]));
                             SpannableString s4= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),String.valueOf(objBean.getLowestFreight()),String.valueOf(front[1]));
                             tvSeven.setText(s3.toString()+s4);
-                            SpannableString s5= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),String.valueOf(objBean.getCurrentUsers()),String.valueOf(objBean.getCurrentUsers()));
+                            SpannableString s5= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),"已有"+String.valueOf(objBean.getCurrentUsers())+"人参团",String.valueOf(objBean.getCurrentUsers()));
 
-                            tvNine.setText("已有"+s5+"人参团");
+                            tvNine.setText(s5);
                             button.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
