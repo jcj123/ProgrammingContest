@@ -3,9 +3,7 @@ package com.easy.controller;
 
 import com.easy.common.bean.Result;
 import com.easy.common.until.ResultUtil;
-import com.easy.domain.Mass;
 import com.easy.domain.MassUser;
-import com.easy.service.MassService;
 import com.easy.service.MassUserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -30,29 +28,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class MassUserController {
 
   @Autowired
-  MassUserService massUserService;
-
-  @Autowired
-  MassService massService;
+  private MassUserService massUserService;
 
   @PostMapping("/adduser")
-  @ApiOperation(value = "参加集货")
+  @ApiOperation(value = "报名集货")
   @ApiImplicitParam(dataType = "MassUser", name = "massUser", value = "集货用户信息", required = true)
   @ApiResponses({
       @ApiResponse(code = 200, message = "请求成功"),
   })
   public Result<Boolean> create(@RequestBody @Validated MassUser massUser,
       BindingResult bindingResult) {
-    String massId = massUser.getMassId();
-
-    Mass mass = massService.selectByPrimaryKey(massId);
-
-
-    //模拟用户头像
+    //模拟用户图片
     int num = (int) (Math.random() * 10);
     massUser.setHeadPortrait("/herder/" + num + ".png ");
     //添加集货用户
-    massUserService.insert(massUser);
+    int insert = massUserService.insert(massUser);
+    if (insert == 0) {
+      return ResultUtil.error("参加失败", false);
+    }
     return ResultUtil.success(true);
   }
 

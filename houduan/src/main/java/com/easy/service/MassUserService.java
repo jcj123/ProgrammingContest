@@ -8,6 +8,12 @@ import com.easy.domain.MassUser;
  * @author easy
  */
 public interface MassUserService {
+
+  /**
+   * 报名集货 新增加入用户
+   * @param massUser
+   * @return
+   */
   int insert(MassUser massUser);
 
 }

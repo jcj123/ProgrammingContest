@@ -1,22 +1,19 @@
 package com.easy.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.easy.common.bean.Result;
 import com.easy.domain.Mass;
 import com.easy.domain.ShowMass;
 import com.easy.service.MassService;
 import com.easy.service.ProMarketService;
-
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /***
  * Created on 2017/12/15 <br>
@@ -52,7 +49,7 @@ public class MassController {
 		Integer count = massService.saveMassInfo(mass);
 		Result<ShowMass> result = new Result<>();
 		result.setSuccess(true);
-		result.setObj(mass);
+		result.setObj(showMass);
 		return result;
 	}
 
