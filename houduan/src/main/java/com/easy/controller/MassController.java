@@ -59,9 +59,11 @@ public class MassController {
 		mass.setPicUrl("/cc");
 		
 		massService.saveMassInfo(mass);
+		mass = massService.getMassInfo();
 		
 		List<String> picList = new ArrayList<>();
 		
+		showMass.setId(mass.getId());
 		showMass.setCurrentUsers(mass.getCurrentUsers());
 		showMass.setDailyMinPackages(proMarket.getDailyMinPackages());;
 		showMass.setEndtm(mass.getEndtm());
@@ -109,7 +111,9 @@ public class MassController {
 		}
 		
 		List<String> picList = new ArrayList<>();
+		String userRequire = proMarket.getUseRequire();
 		
+		showMass.setId(mass.getId());
 		showMass.setCurrentUsers(mass.getCurrentUsers());
 		showMass.setDailyMinPackages(proMarket.getDailyMinPackages());;
 		showMass.setEndtm(mass.getEndtm());
@@ -120,6 +124,8 @@ public class MassController {
 		showMass.setMktId(mass.getMktId());
 		showMass.setMktNameShow(proMarket.getMktNameShow());
 		showMass.setPicUrl(mass.getPicUrl());
+		
+		userRequire = String.format(userRequire, proMarket.getDailyMinPackages(), mass.getLowestFreight());
 		showMass.setUseRequire(proMarket.getUseRequire());
 		showMass.setUsersPic(picList);
 		showMass.setWeightMax(proMarket.getWeightMax());
