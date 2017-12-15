@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,10 +34,12 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
 
     private LinearLayout ll_setlectAddress;
     private TextView tvShowAddress;
+    private Button collect;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.edit_info_aty);
         initView();
     }
@@ -43,7 +47,9 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
     private void initView() {
         ll_setlectAddress= (LinearLayout) findViewById(R.id.ll_select_address);
         tvShowAddress= (TextView) findViewById(R.id.tv_show_address);
+        collect = (Button) findViewById(R.id.tv_collect);
         ll_setlectAddress.setOnClickListener(this);
+        collect.setOnClickListener(this);
     }
 
     @Override
@@ -52,6 +58,8 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
             case R.id.ll_select_address:
                 showSitePickUp();
                 break;
+            case R.id.tv_collect:
+
             default:
                 break;
         }

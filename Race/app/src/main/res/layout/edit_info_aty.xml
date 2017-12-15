@@ -82,7 +82,7 @@
         android:id="@+id/et_input_address"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="null"
+        android:background="@null"
         android:paddingLeft="15dp"
         android:maxLines="2"
         android:hint="@string/input_address_hint"/>
@@ -110,14 +110,14 @@
         android:id="@+id/et_input_name"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="null"
+        android:background="@null"
         android:paddingLeft="15dp"
         android:hint="@string/input_name_hint"/>
     <EditText
         android:id="@+id/et_input_phone"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="null"
+        android:background="@null"
         android:inputType="phone"
         android:paddingLeft="15dp"
         android:hint="@string/input_phone_hint"/>
@@ -139,7 +139,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="null"
+            android:background="@null"
             android:gravity="center"
             android:textSize="14sp"
             android:hint="@string/text_predict_amount_hint"/>
@@ -149,18 +149,31 @@
         android:id="@+id/et_input_predict_amount"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="null"
+        android:background="@null"
         android:paddingLeft="15dp"
         android:hint="@string/input_amount_hint"/>
     <EditText
         android:id="@+id/et_input_average_weight"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="null"
+        android:background="@null"
         android:inputType="numberSigned"
         android:paddingLeft="15dp"
         android:hint="@string/input_weight_hint"/>
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/tv_collect"
+            android:textColor="@color/color13"
+            android:text="报名集货"
+            android:layout_alignParentBottom="true"
+            android:background="@color/color1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
 
+    </RelativeLayout>
 
 
 </LinearLayout>
