@@ -28,7 +28,7 @@
     insert into mass_info (id, mkt_id, lowest_price, 
       lowest_freight, pic_url, mass_type, 
       endTm, current_users)
-    values (#{id,jdbcType=VARCHAR}, #{mktId,jdbcType=VARCHAR}, #{lowestPrice,jdbcType=VARCHAR}, 
+    values (UUID(), #{mktId,jdbcType=VARCHAR}, #{lowestPrice,jdbcType=VARCHAR},
       #{lowestFreight,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR}, #{massType,jdbcType=VARCHAR}, 
       #{endtm,jdbcType=TIMESTAMP}, #{currentUsers,jdbcType=INTEGER})
   </insert>

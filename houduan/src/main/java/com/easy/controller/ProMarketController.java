@@ -3,6 +3,9 @@ package com.easy.controller;
 
 import com.easy.common.bean.Result;
 import com.easy.common.until.ResultUtil;
+import com.easy.domain.ProMarket;
+import com.easy.service.ProMarketService;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.easy.domain.Mass;
 import com.easy.service.MassService;
 
@@ -29,15 +32,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/proMarket")
 public class ProMarketController {
 
+  @Autowired
+  ProMarketService proMarketService;
 	@Autowired
 	private MassService massService;
 
+  @PostMapping("/creat")
+  public Result<Boolean> create(@RequestBody ProMarket proMarket) {
+    proMarketService.insert(proMarket);
+    return ResultUtil.success(true);
   @PostMapping
-  @ApiOperation(value = "æ–°å¢å›¢ä¿¡æ¯")
-  @ApiImplicitParam(dataType = "Mass", name = "mass", value = "å›¢ä¿¡æ¯", required = true)
+  @ApiOperation(value = "ĞÂÔöÍÅĞÅÏ¢")
+  @ApiImplicitParam(dataType = "Mass", name = "mass", value = "ÍÅĞÅÏ¢", required = true)
   @ApiResponses({
-          @ApiResponse(code = 201, message = "æ–°å¢æˆåŠŸ"),
-          @ApiResponse(code = 500, message = "æ¥å£å¼‚å¸¸"),
+          @ApiResponse(code = 201, message = "ĞÂÔö³É¹¦"),
+          @ApiResponse(code = 500, message = "½Ó¿ÚÒì³£"),
   })
   public Result<Integer> save(@RequestBody Mass mass) {
 	  Integer count = massService.saveMassInfo(mass);
