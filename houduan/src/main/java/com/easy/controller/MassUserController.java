@@ -40,7 +40,7 @@ public class MassUserController {
       BindingResult bindingResult) {
     //模拟用户图片
     int num = (int) (Math.random() * 10);
-    massUser.setHeadPortrait("/herder/" + num + ".png ");
+    massUser.setHeadPortrait("/header/" + num + ".png ");
     //添加集货用户
     int insert = massUserService.insert(massUser);
     if (insert == 0) {
