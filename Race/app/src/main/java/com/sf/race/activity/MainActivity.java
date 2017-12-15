@@ -5,16 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.sf.race.R;
-import com.sf.race.Utils.OkHttp3Util;
+import com.sf.race.Utils.HttpHelper;
 import com.sf.race.bean.MainBean;
-
-import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,39 +54,59 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initData();
 
-
     }
 
     private void initData() {
-        OkHttp3Util.get("http://10.2.4.85:8082/Mass/getShowMass", new Callback() {
+        new Thread(new Runnable() {
             @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e("failure", String.valueOf(e));
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String s = response.body().toString();
+            public void run() {
+                final String s = HttpHelper.get("http://10.2.4.85:8082/Mass/getShowMass");
+                Log.e("succ",s);
                 MainBean mainBean;
-                mainBean = new Gson().fromJson(s, MainBean.class);
-                Log.e(s, String.valueOf(s));
+                mainBean= new Gson().fromJson(s,MainBean.class);
                 final MainBean finalMainBean = mainBean;
+                Log.e("succ",finalMainBean.toString());
                 MainActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         if (finalMainBean != null) {
-                            tvTitle.setText(finalMainBean.getEndtm());
+//                            tvTitle.setText(finalMainBean.getEndtm());
                         }
                     }
                 });
-
             }
-        });
+        }).start();
+
+//        OkHttp3Util.get("http://10.2.4.85:8082/Mass/getShowMass", new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                Log.e("failure",String.valueOf(e));
+//
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                String s=response.body().toString();
+//                Log.e("succ",s);
+//                MainBean mainBean;
+//                mainBean= new Gson().fromJson(s,MainBean.class);
+//                final MainBean finalMainBean = mainBean;
+//                MainActivity.this.runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        if (finalMainBean !=null){
+//                            tvTitle.setText(finalMainBean.getEndtm());
+//                        }
+//                    }
+//                });
+//
+//            }
+//        });
 
     }
 
