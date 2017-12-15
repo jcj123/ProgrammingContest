@@ -8,6 +8,7 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
@@ -36,8 +37,8 @@ import java.util.Map;
  * Of cause, you can use AssetsDatabaseManager.getManager().getDatabase("xx") to get a database when you need use a database
  */
 public class AssetsDatabaseManager {
-    private static String tag = "AssetsDatabase"; // for LogCat
-    private static String databasepath = "/data/data/%s/databases"; // %s is packageName
+    private static final String TAG = "AssetsDatabase"; // for LogCat
+    private static final String databasepath = "/data/data/%s/databases"; // %s is packageName
 
 
     // A mapping from assets database file to SQLiteDatabase object
@@ -78,13 +79,13 @@ public class AssetsDatabaseManager {
      */
     public SQLiteDatabase getDatabase(String dbfile) {
         if(databases.get(dbfile) != null){
-            Log.i(tag, String.format("Return a database copy of %s", dbfile));
+            Log.i(TAG, String.format("Return a database copy of %s", dbfile));
             return (SQLiteDatabase) databases.get(dbfile);
         }
         if(context==null)
             return null;
 
-        Log.i(tag, String.format("Create database %s", dbfile));
+        Log.i(TAG, String.format("Create database %s", dbfile));
         String spath = getDatabaseFilepath();
         String sfile = getDatabaseFile(dbfile);
 
@@ -94,11 +95,11 @@ public class AssetsDatabaseManager {
         if(!flag || !file.exists()){
             file = new File(spath);
             if(!file.exists() && !file.mkdirs()){
-                Log.i(tag, "Create \""+spath+"\" fail!");
+                Log.i(TAG, "Create \""+spath+"\" fail!");
                 return null;
             }
             if(!copyAssetsToFilesystem(dbfile, sfile)){
-                Log.i(tag, String.format("Copy %s to %s fail!", dbfile, sfile));
+                Log.i(TAG, String.format("Copy %s to %s fail!", dbfile, sfile));
                 return null;
             }
 
@@ -121,7 +122,7 @@ public class AssetsDatabaseManager {
     }
 
     private boolean copyAssetsToFilesystem(String assetsSrc, String des){
-        Log.i(tag, "Copy "+assetsSrc+" to "+des);
+        Log.i(TAG, "Copy "+assetsSrc+" to "+des);
         InputStream istream = null;
         OutputStream ostream = null;
         try{
@@ -133,11 +134,9 @@ public class AssetsDatabaseManager {
             while ((length = istream.read(buffer))>0){
                 ostream.write(buffer, 0, length);
             }
-            istream.close();
-            ostream.close();
         }
         catch(Exception e){
-            e.printStackTrace();
+            Log.e(TAG, "copyAssetsToFilesystem: ", e);
             try{
                 if(istream!=null)
                     istream.close();
@@ -145,9 +144,24 @@ public class AssetsDatabaseManager {
                     ostream.close();
             }
             catch(Exception ee){
-                ee.printStackTrace();
+                Log.e(TAG, "copyAssetsToFilesystem: ", ee);
             }
             return false;
+        }finally {
+            if (istream!=null){
+                try {
+                    istream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (ostream!=null){
+                    try {
+                        ostream.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
         return true;
     }
@@ -171,7 +185,7 @@ public class AssetsDatabaseManager {
      * Close all assets database
      */
     static public void closeAllDatabase(){
-        Log.i(tag, "closeAllDatabase");
+        Log.i(TAG, "closeAllDatabase");
         if(mInstance != null){
             for(int i=0; i<mInstance.databases.size(); ++i){
                 if(mInstance.databases.get(i)!=null){

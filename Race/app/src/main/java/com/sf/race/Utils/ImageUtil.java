@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Environment;
+import android.util.Log;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -20,6 +21,7 @@ import java.io.IOException;
 
 
 public class ImageUtil {
+    private static final String TAG ="ImageUtil";
     public final static String IMG_SAVEURI = Environment.getExternalStorageDirectory() + "/Linke/Temp/";
     public static File savedir = new File(IMG_SAVEURI);
 
@@ -39,19 +41,27 @@ public class ImageUtil {
         if (f.exists()) {
             f.delete();
         }
+        FileOutputStream out=null;
         try {
-            FileOutputStream out = new FileOutputStream(f);
+             out= new FileOutputStream(f);
             if (compress) {
                 imageZoom(bm).compress(Bitmap.CompressFormat.JPEG, 100, out);
             } else {
                 bm.compress(Bitmap.CompressFormat.JPEG, 90, out);
             }
             out.flush();
-            out.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, "saveBitmap: ", e);
+        }finally {
+            if (out!=null){
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    Log.e(TAG, "saveBitmap: ", e);
+                }
+            }
         }
 
     }
@@ -77,6 +87,7 @@ public class ImageUtil {
                     try {
                         f.delete();
                     } catch (Exception e) {
+                        Log.e(TAG, "deleteAllFiles: ", e);
                     }
                 } else {
                     if (f.exists()) { // 判断是否存在
@@ -84,6 +95,7 @@ public class ImageUtil {
                         try {
                             f.delete();
                         } catch (Exception e) {
+                            Log.e(TAG, "deleteAllFiles: ", e);
                         }
                     }
                 }
@@ -110,7 +122,7 @@ public class ImageUtil {
         byte[] b = baos.toByteArray();
         baos.reset();
         // 将字节换成KB
-        double mid = b.length / 512;
+        double mid = (double) b.length / 512;
         // 判断bitmap占用空间是否大于允许最大空间 如果大于则压缩 小于则不压缩
         if (mid > maxSize) {
             // 获取bitmap大小 是允许最大大小的多少倍
@@ -207,8 +219,9 @@ public class ImageUtil {
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             bitmap = barcodeEncoder.createBitmap(result);
         } catch (WriterException e){
-            e.printStackTrace();
+            Log.e(TAG, "encodeAsBitmap: ", e);
         } catch (IllegalArgumentException iae){ // ?
+            Log.e(TAG, "encodeAsBitmap: ", iae);
             return null;
         }
         return bitmap;

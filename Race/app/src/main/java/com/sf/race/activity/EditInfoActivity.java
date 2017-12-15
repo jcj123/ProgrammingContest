@@ -100,6 +100,7 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
                 if (checkParams()){
                     uploadInfo();
                 }
+                break;
             default:
                 break;
         }
@@ -178,7 +179,7 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
             options1Items.add(provinceBean);//添加一级目录
             Provincestr.add(cursor.getString(2));
             //查询二级目录，市区
-            Cursor cursor1 = db.query("city", null, "province_id=?", new String[]{pro_id + ""}, null, null,
+            Cursor cursor1 = db.query("city", null, "province_id=?", new String[]{String.valueOf(pro_id)}, null, null,
                     null);
             ArrayList<CityBean> cityBeanList = new ArrayList<>();
             ArrayList<String> cityStr = new ArrayList<>();
@@ -196,7 +197,7 @@ public class EditInfoActivity extends AppCompatActivity implements View.OnClickL
                 cityBeanList.add(cityBean);
                 cityStr.add(cursor1.getString(3));
                 //查询三级目录
-                Cursor cursor2 = db.query("area", null, "city_id=?", new String[]{cityid + ""}, null, null,
+                Cursor cursor2 = db.query("area", null, "city_id=?", new String[]{String.valueOf(cityid)}, null, null,
                         null);
                 ArrayList<AreaBean> areaBeanList = new ArrayList<>();
                 ArrayList<String> areaBeanstr = new ArrayList<>();

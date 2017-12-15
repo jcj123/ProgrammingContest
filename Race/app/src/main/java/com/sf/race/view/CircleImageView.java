@@ -34,12 +34,14 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.sf.race.R;
 
 
 public class CircleImageView extends ImageView {
+    private static final String TAG="CircleImageView";
 
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
 
@@ -342,7 +344,7 @@ public class CircleImageView extends ImageView {
             drawable.draw(canvas);
             return bitmap;
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "getBitmapFromDrawable: ", e);
             return null;
         }
     }

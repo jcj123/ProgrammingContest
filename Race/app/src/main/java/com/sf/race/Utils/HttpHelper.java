@@ -1,5 +1,7 @@
 package com.sf.race.Utils;
 
+import android.util.Log;
+
 import java.io.IOException;
 
 import okhttp3.MediaType;
@@ -13,6 +15,7 @@ import okhttp3.Response;
  */
 
 public class HttpHelper {
+    private static final String TAG="HttpHelper";
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
     private static Response response;
@@ -28,7 +31,7 @@ public class HttpHelper {
             response = client.newCall(request).execute();
             result = response.body().string();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, "post: ", e);
         }
         return result;
     }
@@ -43,7 +46,7 @@ public class HttpHelper {
             response = client.newCall(request).execute();
             result = response.body().string();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, "get: ", e);
         }
         return result;
     }
