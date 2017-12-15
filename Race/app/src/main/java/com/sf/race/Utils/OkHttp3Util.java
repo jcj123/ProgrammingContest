@@ -3,14 +3,17 @@ package com.sf.race.Utils;
 import com.sf.race.MainApplication;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * 简单封装了下OkHttp3
@@ -19,6 +22,19 @@ import okhttp3.RequestBody;
 public class OkHttp3Util {
 
     private static final String urlPrefix = "https://www.qmshared.com:15001/link/";
+    public static final MediaType JSON
+            = MediaType.parse("application/json; charset=utf-8");
+
+    public static String post(String url,String json)throws IOException{
+        OkHttpClient client = new OkHttpClient();
+            RequestBody body = RequestBody.create(JSON, json);
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(body)
+                    .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+    }
 
     /**
      * 普通的post请求
