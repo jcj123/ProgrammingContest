@@ -2,42 +2,84 @@ package com.sf.race.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.sf.race.R;
+import com.sf.race.Utils.OkHttp3Util;
+import com.sf.race.bean.MainBean;
+
+import java.io.IOException;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.tv_weight)
+    TextView tvWeight;
+    @BindView(R.id.tv_one)
+    TextView tvOne;
+    @BindView(R.id.tv_two)
+    TextView tvTwo;
+    @BindView(R.id.tv_five)
+    TextView tvFive;
+    @BindView(R.id.tv_six)
+    TextView tvSix;
+    @BindView(R.id.tv_seven)
+    TextView tvSeven;
+    @BindView(R.id.tv_eight)
+    TextView tvEight;
+    @BindView(R.id.ll_circle_img)
+    LinearLayout llCircleImg;
+    @BindView(R.id.tv_nine)
+    TextView tvNine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        ButterKnife.bind(this);
+        initData();
+
+
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    private void initData() {
+        OkHttp3Util.get("http://10.2.4.85:8082/Mass/getShowMass", new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("failure",String.valueOf(e));
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String s=response.body().toString();
+                MainBean mainBean;
+                mainBean= new Gson().fromJson(s,MainBean.class);
+                final MainBean finalMainBean = mainBean;
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (finalMainBean !=null){
+                            tvTitle.setText(finalMainBean.getEndtm());
+                        }
+                    }
+                });
+
+            }
+        });
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

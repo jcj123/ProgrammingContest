@@ -34,18 +34,22 @@
             android:layout_height="5dp"
             android:layout_centerInParent="true"
             />
+
         <TextView
             android:text="鞋服专送大酬宾"
             android:textColor="@color/color1"
             android:textSize="25sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"/>
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/tv_title" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="180dp">
         <TextView
+            android:id="@+id/tv_weight"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="25dp"
             android:layout_marginStart="25dp"
@@ -81,6 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/tv_two"
             android:textColor="@color/color13"
             android:layout_marginEnd="44dp"
             android:layout_marginRight="44dp"
@@ -97,6 +102,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/tv_five"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -117,6 +123,7 @@
         android:layout_height="4dp"
         android:background="@color/color6"/>
     <TextView
+        android:id="@+id/tv_six"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:textSize="18sp"
@@ -148,7 +155,7 @@
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="15dp"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="@color/color14"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
@@ -158,6 +165,7 @@
 
         </LinearLayout>
         <TextView
+            android:id="@+id/tv_seven"
             android:textSize="14sp"
             android:textColor="@color/color7"
             android:layout_marginLeft="10dp"
@@ -166,6 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/tv_eight"
             android:textSize="14sp"
             android:textColor="@color/color7"
             android:layout_marginLeft="10dp"
@@ -219,6 +228,7 @@
 
         </LinearLayout>
         <TextView
+            android:id="@+id/tv_nine"
             android:layout_marginRight="20dp"
             android:layout_marginEnd="20dp"
             android:textSize="18sp"
