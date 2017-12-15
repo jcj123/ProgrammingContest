@@ -42,14 +42,14 @@ public class Swagger2Config {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 //页面标题
-                .title("Spring Boot 测试使用 Swagger2 构建RESTful API")
+                .title("集货助手 API")
                 .termsOfServiceUrl("http://localhost/")
                 //创建人
                 .contact(new Contact("easy", "", "superlxing@163.com"))
                 //版本号
                 .version("1.0")
                 //描述
-                .description("Demo API 描述")
+                .description("吃鸡小队")
                 .build();
     }
 }

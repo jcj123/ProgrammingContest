@@ -6,168 +6,168 @@ import java.util.List;
 
 public class ShowMass {
 
-	private String id;
+  private String id;
 
-	//寄貨id
-    private String mktId;
+  //寄貨id
+  private String mktId;
 
-    //最低價格
-    private String lowestPrice;
+  //最低價格
+  private String lowestPrice;
 
-    //最低費用
-    private String lowestFreight;
+  //最低費用
+  private String lowestFreight;
 
-    //推廣圖片
-    private String picUrl;
+  //推廣圖片
+  private String picUrl;
 
-    //集貨類型
-    private String massType;
+  //集貨類型
+  private String massType;
 
-    //截止時間
-    private Date endtm;
+  //截止時間
+  private Date endtm;
 
-    //當前人數
-    private Integer currentUsers;
-    
-    //當前人數
-    private List<String> usersPic;
-    
-    //集貨名稱
-    private String mktNameShow;
+  //當前人數
+  private Integer currentUsers;
 
-    //最低寄件量
-    private Short dailyMinPackages;
+  //當前人數
+  private List<String> usersPic;
 
-    //最小重量
-    private BigDecimal weightMin;
+  //集貨名稱
+  private String mktNameShow;
 
-    //最大重量
-    private BigDecimal weightMax;
+  //最低寄件量
+  private Short dailyMinPackages;
 
-    //總名額
-    private Short groupLimit;
+  //最小重量
+  private BigDecimal weightMin;
 
-    //使用要求
-    private String useRequire;
+  //最大重量
+  private BigDecimal weightMax;
 
-	public String getId() {
-		return id;
-	}
+  //總名額
+  private Short groupLimit;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+  //使用要求
+  private String useRequire;
 
-	public String getMktId() {
-		return mktId;
-	}
+  public String getId() {
+    return id;
+  }
 
-	public void setMktId(String mktId) {
-		this.mktId = mktId;
-	}
+  public void setId(String id) {
+    this.id = id;
+  }
 
-	public String getLowestPrice() {
-		return lowestPrice;
-	}
+  public String getMktId() {
+    return mktId;
+  }
 
-	public void setLowestPrice(String lowestPrice) {
-		this.lowestPrice = lowestPrice;
-	}
+  public void setMktId(String mktId) {
+    this.mktId = mktId;
+  }
 
-	public String getLowestFreight() {
-		return lowestFreight;
-	}
+  public String getLowestPrice() {
+    return lowestPrice;
+  }
 
-	public void setLowestFreight(String lowestFreight) {
-		this.lowestFreight = lowestFreight;
-	}
+  public void setLowestPrice(String lowestPrice) {
+    this.lowestPrice = lowestPrice;
+  }
 
-	public String getPicUrl() {
-		return picUrl;
-	}
+  public String getLowestFreight() {
+    return lowestFreight;
+  }
 
-	public void setPicUrl(String picUrl) {
-		this.picUrl = picUrl;
-	}
+  public void setLowestFreight(String lowestFreight) {
+    this.lowestFreight = lowestFreight;
+  }
 
-	public String getMassType() {
-		return massType;
-	}
+  public String getPicUrl() {
+    return picUrl;
+  }
 
-	public void setMassType(String massType) {
-		this.massType = massType;
-	}
+  public void setPicUrl(String picUrl) {
+    this.picUrl = picUrl;
+  }
 
-	public Date getEndtm() {
-		return endtm;
-	}
+  public String getMassType() {
+    return massType;
+  }
 
-	public void setEndtm(Date endtm) {
-		this.endtm = endtm;
-	}
+  public void setMassType(String massType) {
+    this.massType = massType;
+  }
 
-	public Integer getCurrentUsers() {
-		return currentUsers;
-	}
+  public Date getEndtm() {
+    return endtm;
+  }
 
-	public void setCurrentUsers(Integer currentUsers) {
-		this.currentUsers = currentUsers;
-	}
+  public void setEndtm(Date endtm) {
+    this.endtm = endtm;
+  }
 
-	public List<String> getUsersPic() {
-		return usersPic;
-	}
+  public Integer getCurrentUsers() {
+    return currentUsers;
+  }
 
-	public void setUsersPic(List<String> usersPic) {
-		this.usersPic = usersPic;
-	}
+  public void setCurrentUsers(Integer currentUsers) {
+    this.currentUsers = currentUsers;
+  }
 
-	public String getMktNameShow() {
-		return mktNameShow;
-	}
+  public List<String> getUsersPic() {
+    return usersPic;
+  }
 
-	public void setMktNameShow(String mktNameShow) {
-		this.mktNameShow = mktNameShow;
-	}
+  public void setUsersPic(List<String> usersPic) {
+    this.usersPic = usersPic;
+  }
 
-	public Short getDailyMinPackages() {
-		return dailyMinPackages;
-	}
+  public String getMktNameShow() {
+    return mktNameShow;
+  }
 
-	public void setDailyMinPackages(Short dailyMinPackages) {
-		this.dailyMinPackages = dailyMinPackages;
-	}
+  public void setMktNameShow(String mktNameShow) {
+    this.mktNameShow = mktNameShow;
+  }
 
-	public BigDecimal getWeightMin() {
-		return weightMin;
-	}
+  public Short getDailyMinPackages() {
+    return dailyMinPackages;
+  }
 
-	public void setWeightMin(BigDecimal weightMin) {
-		this.weightMin = weightMin;
-	}
+  public void setDailyMinPackages(Short dailyMinPackages) {
+    this.dailyMinPackages = dailyMinPackages;
+  }
 
-	public BigDecimal getWeightMax() {
-		return weightMax;
-	}
+  public BigDecimal getWeightMin() {
+    return weightMin;
+  }
 
-	public void setWeightMax(BigDecimal weightMax) {
-		this.weightMax = weightMax;
-	}
+  public void setWeightMin(BigDecimal weightMin) {
+    this.weightMin = weightMin;
+  }
 
-	public Short getGroupLimit() {
-		return groupLimit;
-	}
+  public BigDecimal getWeightMax() {
+    return weightMax;
+  }
 
-	public void setGroupLimit(Short groupLimit) {
-		this.groupLimit = groupLimit;
-	}
+  public void setWeightMax(BigDecimal weightMax) {
+    this.weightMax = weightMax;
+  }
 
-	public String getUseRequire() {
-		return useRequire;
-	}
+  public Short getGroupLimit() {
+    return groupLimit;
+  }
 
-	public void setUseRequire(String useRequire) {
-		this.useRequire = useRequire;
-	}
-    
+  public void setGroupLimit(Short groupLimit) {
+    this.groupLimit = groupLimit;
+  }
+
+  public String getUseRequire() {
+    return useRequire;
+  }
+
+  public void setUseRequire(String useRequire) {
+    this.useRequire = useRequire;
+  }
+
 }

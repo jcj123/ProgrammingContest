@@ -1,5 +1,6 @@
 package com.easy.domain;
 
+import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class MassUser {
@@ -14,6 +15,7 @@ public class MassUser {
   @NotEmpty(message = "寄件人姓名不能为空")
   private String userName;
   @NotEmpty(message = "寄件人手机不能为空")
+  @Pattern(regexp = "^((17[0-9])|(14[0-9])|(13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$")
   private String phone;
   private String headPortrait;
   @NotEmpty(message = "预估每日寄件量不能为空")
