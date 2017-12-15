@@ -1,14 +1,10 @@
 package com.sf.race.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.SpannableString;
 import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.widget.Button;
-import android.view.View;
-import android.widget.Button;
-import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -18,41 +14,25 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.sf.race.R;
 import com.sf.race.Utils.HttpHelper;
+import com.sf.race.Utils.SearchResultUtil;
 import com.sf.race.bean.MainBean;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.tv_weight)
     TextView tvWeight;
-    @BindView(R.id.tv_one)
     TextView tvOne;
-    @BindView(R.id.tv_two)
     TextView tvTwo;
-    @BindView(R.id.tv_five)
     TextView tvFive;
-    @BindView(R.id.tv_six)
     TextView tvSix;
-    @BindView(R.id.tv_seven)
     TextView tvSeven;
-    @BindView(R.id.tv_eight)
-    TextView tvEight;
-    @BindView(R.id.ll_circle_img)
     LinearLayout llCircleImg;
-    @BindView(R.id.tv_nine)
     TextView tvNine;
-    @BindView(R.id.button)
     Button button;
-    @BindView(R.id.ll_share)
     RelativeLayout llShare;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        tvTitle=(TextView) findViewById(R.id.tv_title);
+        tvWeight=(TextView) findViewById(R.id.tv_weight);
+        tvOne=(TextView) findViewById(R.id.tv_one);
+        tvFive=(TextView) findViewById(R.id.tv_five);
+        tvSix=(TextView) findViewById(R.id.tv_six);
+        tvSeven=(TextView) findViewById(R.id.tv_seven);
+        tvNine=(TextView) findViewById(R.id.tv_nine);
         initData();
 
     }
@@ -78,7 +65,24 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         if (finalMainBean != null) {
-//                            tvTitle.setText(finalMainBean.getEndtm());
+                            MainBean.ObjBean objBean=finalMainBean.getObj();
+                            tvTitle.setText(objBean.getMktNameShow());
+                            SpannableString s1= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),String.valueOf(objBean.getDailyMinPackages()),String.valueOf(objBean.getDailyMinPackages()));
+                            tvWeight.setText(String.valueOf(objBean.getWeightMin())+"_"+String.valueOf(objBean.getWeightMax()+"  "+"每日最低需寄"+s1+"件"));
+                            tvOne.setText(objBean.getLowestPrice());
+                            SpannableString s2= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),String.valueOf(objBean.getGroupLimit()-objBean.getCurrentUsers()),String.valueOf(objBean.getGroupLimit()-objBean.getCurrentUsers()));
+                            tvFive.setText("还差"+s2+"人即可成团");
+                            tvSix.setText("截止日期："+objBean.getEndtm());
+                            String[] front=objBean.getUseRequire().split("）");
+                            SpannableString s3= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),String.valueOf(objBean.getDailyMinPackages()),String.valueOf(front[0]));
+                            SpannableString s4= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),String.valueOf(objBean.getLowestFreight()),String.valueOf(front[1]));
+                            tvSeven.setText(s3.toString()+s4);
+                            SpannableString s5= SearchResultUtil.matcherSearchTitle(Color.parseColor("#ff6532"),String.valueOf(objBean.getCurrentUsers()),String.valueOf(objBean.getCurrentUsers()));
+
+                            tvNine.setText("已有"+s5+"人参团");
+
+
+
                         }
                     }
                 });
@@ -113,13 +117,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.button, R.id.ll_share})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.button:
-                break;
-            case R.id.ll_share:
-                break;
-        }
-    }
+
 }

@@ -37,7 +37,6 @@
             />
 
         <TextView
-            android:text="鞋服专送大酬宾"
             android:textColor="@color/color1"
             android:textSize="25sp"
             android:layout_width="wrap_content"
@@ -93,7 +92,6 @@
             android:layout_below="@+id/tv_one"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:text="1.5kg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>
@@ -177,26 +175,9 @@
             android:textColor="@color/color7"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:text="1.每日承诺最低不少于2件"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tv_eight"
-            android:textSize="10sp"
-            android:textColor="@color/color7"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:text="每日需要遵守规定"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:textSize="10sp"
-            android:textColor="@color/color7"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:text="@string/main_rule"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+
     </LinearLayout>
     <View
         android:layout_width="match_parent"
