@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:background="@color/color13"
     tools:context="com.sf.race.activity.MainActivity">
     <RelativeLayout
         android:paddingBottom="20dp"
@@ -41,8 +42,147 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"/>
-
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
+            android:textSize="18sp"
+            android:textColor="@color/color14"
+            android:text="1.5kg-2.0kg  每日最低20件"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/main_background"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:background="@drawable/main_res"/>
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginRight="44dp"
+            android:textColor="@color/color13"
+            android:id="@+id/tv_one"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="低至6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="@color/color13"
+            android:layout_marginEnd="44dp"
+            android:layout_marginRight="44dp"
+            android:layout_below="@+id/tv_one"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="1.5kg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:text="还差8人即可成团"
+            android:textSize="18sp"
+            android:textColor="@color/color14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/color6"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="18sp"
+        android:textColor="@color/color14"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="截至日期：8月14日"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/color6"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/main_attention"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:textSize="20sp"
+                android:textColor="@color/color14"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:text="使用要求"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color7"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="1.每日承诺最低不少于2件"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color7"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="每日需要遵守规定"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color7"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="2."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 
 
