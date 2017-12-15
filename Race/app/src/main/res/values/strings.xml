@@ -2,5 +2,18 @@
     <string name="app_name">Race</string>
     <string name="action_settings">Settings</string>
     <string name="main_title">集货详情</string>
+    <string name="sf_collect_helper">顺丰集货助手</string>
     <string name="main_rule">2.承诺使用周期内提前终止寄件视为违约行为。\n3.集货周期内未达到目标则自动取消集货。\n4.用户需自行完成打包并贴好面单。\n5.每日在约定时间内进行一次交件，不支持随寄随收。\n6.按月结算运费，不支持现寄现结。</string>
+    <string name="edit_info_title">填写寄件信息</string>
+    <string name="mail_address">寄件信息</string>
+    <string name="mail_person">寄件人</string>
+    <string name="stay_area">所在地区</string>
+    <string name="click_stay_area">点击所在地区</string>
+    <string name="input_address_hint">请填写详细地址，不少于5个字</string>
+    <string name="input_name_hint">请填写寄件人姓名</string>
+    <string name="input_phone_hint">请填写寄件人电话</string>
+    <string name="input_amount_hint">请填写寄件数量（至少20件）</string>
+    <string name="input_weight_hint">请选择单件平均重量</string>
+    <string name="text_predict_amount">预估每日件量</string>
+    <string name="text_predict_amount_hint">(请如实填报，以便我们为您准备资源)</string>
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.easy.dao.MassMapper" >
+  
   <resultMap id="BaseResultMap" type="com.easy.domain.Mass" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="mkt_id" property="mktId" jdbcType="VARCHAR" />
@@ -11,19 +12,30 @@
     <result column="endTm" property="endtm" jdbcType="TIMESTAMP" />
     <result column="current_users" property="currentUsers" jdbcType="INTEGER" />
   </resultMap>
+  
   <sql id="Base_Column_List" >
     id, mkt_id, lowest_price, lowest_freight, pic_url, mass_type, endTm, current_users
   </sql>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from mass_info
     where id = #{id,jdbcType=VARCHAR}
   </select>
+  
+  <select id="getMassInfo" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mass_info
+    order by endTm desc limit 1
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from mass_info
     where id = #{id,jdbcType=VARCHAR}
   </delete>
+  
   <insert id="insert" parameterType="com.easy.domain.Mass" >
     insert into mass_info (id, mkt_id, lowest_price, 
       lowest_freight, pic_url, mass_type, 
@@ -32,6 +44,7 @@
       #{lowestFreight,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR}, #{massType,jdbcType=VARCHAR}, 
       #{endtm,jdbcType=TIMESTAMP}, #{currentUsers,jdbcType=INTEGER})
   </insert>
+  
   <insert id="insertSelective" parameterType="com.easy.domain.Mass" >
     insert into mass_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -87,6 +100,7 @@
       </if>
     </trim>
   </insert>
+  
   <update id="updateByPrimaryKeySelective" parameterType="com.easy.domain.Mass" >
     update mass_info
     <set >
@@ -114,6 +128,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  
   <update id="updateByPrimaryKey" parameterType="com.easy.domain.Mass" >
     update mass_info
     set mkt_id = #{mktId,jdbcType=VARCHAR},
@@ -125,4 +140,5 @@
       current_users = #{currentUsers,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  
 </mapper>

@@ -5,6 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.sf.race.R;
@@ -19,7 +23,7 @@ import java.util.ArrayList;
  * Created by lxb on 2017-12-15.
  */
 
-public class EditInfoActivity extends AppCompatActivity {
+public class EditInfoActivity extends AppCompatActivity implements View.OnClickListener{
     private OptionsPickerView pvOptions;//地址选择器
     private ArrayList<ProvinceBean> options1Items = new ArrayList<>();//省
     private ArrayList<ArrayList<CityBean>> options2Items = new ArrayList<>();//市
@@ -28,10 +32,37 @@ public class EditInfoActivity extends AppCompatActivity {
     private ArrayList<ArrayList<String>> Citystr = new ArrayList<>();//市
     private ArrayList<ArrayList<ArrayList<String>>> Areastr = new ArrayList<>();//区
 
+    private LinearLayout ll_setlectAddress;
+    private TextView tvShowAddress;
+    private Button collect;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.edit_info_aty);
+        initView();
+    }
+
+    private void initView() {
+        ll_setlectAddress= (LinearLayout) findViewById(R.id.ll_select_address);
+        tvShowAddress= (TextView) findViewById(R.id.tv_show_address);
+        collect = (Button) findViewById(R.id.tv_collect);
+        ll_setlectAddress.setOnClickListener(this);
+        collect.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.ll_select_address:
+                showSitePickUp();
+                break;
+            case R.id.tv_collect:
+
+            default:
+                break;
+        }
     }
 
     private void showSitePickUp() {
@@ -96,6 +127,7 @@ public class EditInfoActivity extends AppCompatActivity {
                 String tx = Provincestr.get(options1)
                         + Citystr.get(options1).get(option2)
                         + Areastr.get(options1).get(option2).get(options3);
+                tvShowAddress.setText(tx);
             }
         }).build();
         pvOptions.setPicker(Provincestr, Citystr, Areastr);

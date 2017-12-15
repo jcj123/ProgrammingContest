@@ -25,6 +25,9 @@
         <activity android:name=".activity.ShareActivity">
 
         </activity>
+        <activity android:name=".activity.ShareActivity">
+
+        </activity>
         <activity android:name=".activity.EditInfoActivity">
 
         </activity>

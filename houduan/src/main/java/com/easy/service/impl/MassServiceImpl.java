@@ -29,4 +29,9 @@ public class MassServiceImpl implements MassService {
     return massMapper.selectByPrimaryKey(id);
   }
 
+	@Override
+	public Mass getMassInfo() {
+		return massMapper.getMassInfo();
+	}
+
 }

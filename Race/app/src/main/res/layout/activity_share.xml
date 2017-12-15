@@ -7,6 +7,21 @@
     android:orientation="vertical"
     tools:context="com.sf.race.activity.ShareActivity">
     <RelativeLayout
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:background="@color/color1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="@color/color13"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="@string/sf_collect_helper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp">
@@ -16,22 +31,15 @@
             android:layout_height="wrap_content"
             android:text="鞋服专送080901期"
             android:textColor="@color/color1"
-            android:textSize="@dimen/dimen0"
+            android:textSize="24sp"
             android:gravity="center"
             />
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="1dp"
+        <View
+            android:background="@drawable/main_double_shape"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
             android:layout_centerInParent="true"
-            android:layout_alignLeft="@id/tv_title"
-            android:background="@drawable/gradient_line_left"/>
-
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="1dp"
-            android:layout_centerInParent="true"
-            android:layout_alignRight="@id/tv_title"
-            android:background="@drawable/gradient_line_right"/>
+            />
     </RelativeLayout>
 
     <LinearLayout
@@ -46,7 +54,7 @@
             android:layout_height="wrap_content"
             android:text="全国流向%s |   "
             android:textColor="@color/color5"
-            android:textSize="@dimen/dimen1"
+            android:textSize="16sp"
             />
 
         <TextView
@@ -54,10 +62,12 @@
             android:layout_height="wrap_content"
             android:text="每日承诺寄件量最低%s件"
             android:textColor="@color/color5"
-            android:textSize="@dimen/dimen1" />
+            android:textSize="16sp"
+            />
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/bt_qcode"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:src="@mipmap/ic_launcher"
@@ -71,7 +81,7 @@
         android:maxLines="2"
         android:maxEms="12"
         android:layout_gravity="center_horizontal"
-        android:textSize="@dimen/dimen3" />
+        android:textSize="16sp" />
     <Button
         android:id="@+id/bt_share"
         android:layout_width="300dp"
@@ -80,7 +90,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/share_button"
         android:textColor="#ffffff"
-        android:textSize="@dimen/dimen0"
+        android:textSize="24sp"
         android:text="保存分享小程序码"
         />
     <TextView
@@ -91,5 +101,5 @@
         android:maxLines="2"
         android:maxEms="12"
         android:layout_gravity="center_horizontal"
-        android:textSize="@dimen/dimen5" />
+        android:textSize="12sp" />
 </LinearLayout>
