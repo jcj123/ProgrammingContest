@@ -22,4 +22,9 @@ public class ProMarketServiceImpl implements ProMarketService {
   public int insert(ProMarket record) {
     return proMarketMapper.insert(record);
   }
+
+	@Override
+	public ProMarket selectByPrimaryKey(String mktId) {
+		return proMarketMapper.selectByPrimaryKey(mktId);
+	}
 }

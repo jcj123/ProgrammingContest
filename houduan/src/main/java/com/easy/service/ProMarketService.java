@@ -9,6 +9,9 @@ import com.easy.domain.ProMarket;
  * @version 1.0
  */
 public interface ProMarketService {
-  int insert(ProMarket record);
+  
+	int insert(ProMarket record);
+  
+	ProMarket selectByPrimaryKey(String mktId);
 
 }
