@@ -2,23 +2,51 @@ package com.easy.domain;
 
 import java.io.Serializable;
 import java.util.Date;
-
+/***
+ * Created on 2017/12/15 <br>
+ * Description: 集货信息<br>
+ * @author easy
+ */
 public class Mass implements Serializable {
 
+  /**
+   * 主键
+   */
   private String id;
 
+  /**
+   *专业市场id
+   */
   private String mktId;
 
+  /**
+   * 最低价格
+   */
   private String lowestPrice;
 
+  /**
+   * 最低运费
+   */
   private String lowestFreight;
 
+  /**
+   * 推广图片
+   */
   private String picUrl;
 
+  /**
+   * 货团类型
+   */
   private String massType;
 
+  /**
+   * 结束时间
+   */
   private Date endtm;
 
+  /**
+   * 当前人数
+   */
   private Integer currentUsers;
 
   public String getId() {

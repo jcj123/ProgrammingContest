@@ -15,8 +15,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /***
- * Created on 2017/11/1 <br>
- * Description: [SwaggerUI配置  http://localhost:8080/swagger-ui.html]<br>
+ * Created on 2017/12/15 <br>
+ * Description: [SwaggerUI配置  http://localhost:8082/swagger-ui.html]<br>
  * @author easy
  */
 @Profile("dev")
