@@ -1,9 +1,10 @@
 package com.easy.domain;
 
+import java.io.Serializable;
 import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class MassUser {
+public class MassUser implements Serializable {
 
   private Integer id;
   @NotEmpty(message = "集货信息id不能为空")

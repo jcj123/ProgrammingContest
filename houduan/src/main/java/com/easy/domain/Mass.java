@@ -1,8 +1,9 @@
 package com.easy.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Mass {
+public class Mass implements Serializable {
 
   private String id;
 
