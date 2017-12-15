@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sf.race.activity.ShareActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp">
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="鞋服专送080901期"
+            android:textColor="@color/color1"
+            android:textSize="@dimen/dimen0"
+            android:gravity="center"
+            />
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:layout_alignLeft="@id/tv_title"
+            android:background="@drawable/gradient_line_left"/>
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:layout_alignRight="@id/tv_title"
+            android:background="@drawable/gradient_line_right"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全国流向%s |   "
+            android:textColor="@color/color5"
+            android:textSize="@dimen/dimen1"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="每日承诺寄件量最低%s件"
+            android:textColor="@color/color5"
+            android:textSize="@dimen/dimen1" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginTop="32dp"
+        android:layout_gravity="center_horizontal"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="扫一扫或长按二维码识别即可直达集货页面"
+        android:maxLines="2"
+        android:maxEms="12"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/dimen3" />
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/share_button"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/dimen0"
+        android:text="保存分享小程序码"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="长按二维码,查看详情"
+        android:maxLines="2"
+        android:maxEms="12"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/dimen5" />
+</LinearLayout>

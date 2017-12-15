@@ -24,7 +24,7 @@
       userId="root"
       password="1234ROOT.mysql"/>
     <!-- 生成实体类地址 -->
-    <javaModelGenerator targetPackage="com.model"
+    <javaModelGenerator targetPackage="com.easy.domain"
       targetProject="src/main/java">
       <property name="enableSubPackages" value="true"/>
       <!--<property name="trimStrings" value="true"/>-->
@@ -35,7 +35,7 @@
       <property name="enableSubPackages" value="true"/>
     </sqlMapGenerator>
     <!-- 生成mapxml文件 -->
-    <javaClientGenerator targetPackage="com.mapper"
+    <javaClientGenerator targetPackage="com.easy.dao"
       targetProject="src/main/java" type="XMLMAPPER">
       <property name="enableSubPackages" value="true"/>
     </javaClientGenerator>
@@ -43,7 +43,19 @@
     <!-- 配置表信息 -->
     <!--下面你可以重复添加对应多个表-->
     <!--后面选项：是否生成 example类 -->
-    <table tableName="demo" domainObjectName="ChannelAccess"
+    <table tableName="mass_info" domainObjectName="Mass"
+      enableCountByExample="false" enableUpdateByExample="false"
+      enableDeleteByExample="false" enableSelectByExample="false"
+      selectByExampleQueryId="false">
+    </table>
+
+    <table tableName="pro_market_base" domainObjectName="ProMarket"
+      enableCountByExample="false" enableUpdateByExample="false"
+      enableDeleteByExample="false" enableSelectByExample="false"
+      selectByExampleQueryId="false">
+    </table>
+
+    <table tableName="mass_user_info" domainObjectName="MassUser"
       enableCountByExample="false" enableUpdateByExample="false"
       enableDeleteByExample="false" enableSelectByExample="false"
       selectByExampleQueryId="false">
