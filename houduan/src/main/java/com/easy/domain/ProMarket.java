@@ -3,103 +3,104 @@ package com.easy.domain;
 import java.math.BigDecimal;
 
 public class ProMarket {
-    private String mktId;
 
-    private String mktNameShow;
+  private String mktId;
 
-    private Short dailyMinPackages;
+  private String mktNameShow;
 
-    private BigDecimal weightMin;
+  private Short dailyMinPackages;
 
-    private BigDecimal weightMax;
+  private BigDecimal weightMin;
 
-    private BigDecimal basePrice;
+  private BigDecimal weightMax;
 
-    private BigDecimal baseWeight;
+  private BigDecimal basePrice;
 
-    private Short groupLimit;
+  private BigDecimal baseWeight;
 
-    private Integer groupDuration;
+  private Short groupLimit;
 
-    private String useRequire;
+  private Integer groupDuration;
 
-    public String getMktId() {
-        return mktId;
-    }
+  private String useRequire;
 
-    public void setMktId(String mktId) {
-        this.mktId = mktId;
-    }
+  public String getMktId() {
+    return mktId;
+  }
 
-    public String getMktNameShow() {
-        return mktNameShow;
-    }
+  public void setMktId(String mktId) {
+    this.mktId = mktId;
+  }
 
-    public void setMktNameShow(String mktNameShow) {
-        this.mktNameShow = mktNameShow;
-    }
+  public String getMktNameShow() {
+    return mktNameShow;
+  }
 
-    public Short getDailyMinPackages() {
-        return dailyMinPackages;
-    }
+  public void setMktNameShow(String mktNameShow) {
+    this.mktNameShow = mktNameShow;
+  }
 
-    public void setDailyMinPackages(Short dailyMinPackages) {
-        this.dailyMinPackages = dailyMinPackages;
-    }
+  public Short getDailyMinPackages() {
+    return dailyMinPackages;
+  }
 
-    public BigDecimal getWeightMin() {
-        return weightMin;
-    }
+  public void setDailyMinPackages(Short dailyMinPackages) {
+    this.dailyMinPackages = dailyMinPackages;
+  }
 
-    public void setWeightMin(BigDecimal weightMin) {
-        this.weightMin = weightMin;
-    }
+  public BigDecimal getWeightMin() {
+    return weightMin;
+  }
 
-    public BigDecimal getWeightMax() {
-        return weightMax;
-    }
+  public void setWeightMin(BigDecimal weightMin) {
+    this.weightMin = weightMin;
+  }
 
-    public void setWeightMax(BigDecimal weightMax) {
-        this.weightMax = weightMax;
-    }
+  public BigDecimal getWeightMax() {
+    return weightMax;
+  }
 
-    public BigDecimal getBasePrice() {
-        return basePrice;
-    }
+  public void setWeightMax(BigDecimal weightMax) {
+    this.weightMax = weightMax;
+  }
 
-    public void setBasePrice(BigDecimal basePrice) {
-        this.basePrice = basePrice;
-    }
+  public BigDecimal getBasePrice() {
+    return basePrice;
+  }
 
-    public BigDecimal getBaseWeight() {
-        return baseWeight;
-    }
+  public void setBasePrice(BigDecimal basePrice) {
+    this.basePrice = basePrice;
+  }
 
-    public void setBaseWeight(BigDecimal baseWeight) {
-        this.baseWeight = baseWeight;
-    }
+  public BigDecimal getBaseWeight() {
+    return baseWeight;
+  }
 
-    public Short getGroupLimit() {
-        return groupLimit;
-    }
+  public void setBaseWeight(BigDecimal baseWeight) {
+    this.baseWeight = baseWeight;
+  }
 
-    public void setGroupLimit(Short groupLimit) {
-        this.groupLimit = groupLimit;
-    }
+  public Short getGroupLimit() {
+    return groupLimit;
+  }
 
-    public Integer getGroupDuration() {
-        return groupDuration;
-    }
+  public void setGroupLimit(Short groupLimit) {
+    this.groupLimit = groupLimit;
+  }
 
-    public void setGroupDuration(Integer groupDuration) {
-        this.groupDuration = groupDuration;
-    }
+  public Integer getGroupDuration() {
+    return groupDuration;
+  }
 
-    public String getUseRequire() {
-        return useRequire;
-    }
+  public void setGroupDuration(Integer groupDuration) {
+    this.groupDuration = groupDuration;
+  }
 
-    public void setUseRequire(String useRequire) {
-        this.useRequire = useRequire;
-    }
+  public String getUseRequire() {
+    return useRequire;
+  }
+
+  public void setUseRequire(String useRequire) {
+    this.useRequire = useRequire;
+  }
 }

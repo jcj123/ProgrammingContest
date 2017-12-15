@@ -15,6 +15,7 @@ import com.easy.domain.Mass;
 import com.easy.domain.ProMarket;
 import com.easy.domain.ShowMass;
 import com.easy.service.MassService;
+import com.easy.service.MassUserService;
 import com.easy.service.ProMarketService;
 
 import io.swagger.annotations.ApiOperation;
@@ -35,13 +36,16 @@ public class MassController {
 	private MassService massService;
 	
 	@Autowired
+	private MassUserService massUserService;
+	
+	@Autowired
 	private ProMarketService proMarketService;
 
 	public ShowMass createShowMass() {
 		
 		Mass mass = new Mass();
 		ShowMass showMass = new ShowMass();
-		ProMarket proMarket = new ProMarket();
+		ProMarket proMarket;
 		
 		//查詢集貨基礎表信息
 		proMarket = proMarketService.selectByPrimaryKey("e174424f-e153-11e7-83f0-00ff8ba56b27");
@@ -59,9 +63,12 @@ public class MassController {
 		mass.setPicUrl("/cc");
 		
 		massService.saveMassInfo(mass);
+		mass = massService.getMassInfo();
 		
 		List<String> picList = new ArrayList<>();
+		String userRequire = proMarket.getUseRequire();
 		
+		showMass.setId(mass.getId());
 		showMass.setCurrentUsers(mass.getCurrentUsers());
 		showMass.setDailyMinPackages(proMarket.getDailyMinPackages());;
 		showMass.setEndtm(mass.getEndtm());
@@ -72,7 +79,9 @@ public class MassController {
 		showMass.setMktId(mass.getMktId());
 		showMass.setMktNameShow(proMarket.getMktNameShow());
 		showMass.setPicUrl(mass.getPicUrl());
-		showMass.setUseRequire(proMarket.getUseRequire());
+		
+		userRequire = String.format(userRequire, proMarket.getDailyMinPackages(), mass.getLowestFreight());
+		showMass.setUseRequire(userRequire);
 		showMass.setUsersPic(picList);
 		showMass.setWeightMax(proMarket.getWeightMax());
 		showMass.setWeightMin(proMarket.getWeightMin());
@@ -108,8 +117,10 @@ public class MassController {
 			return result;
 		}
 		
-		List<String> picList = new ArrayList<>();
+		List<String> picList = massUserService.getHeadUrlListByMassId(mass.getId());
+		String userRequire = proMarket.getUseRequire();
 		
+		showMass.setId(mass.getId());
 		showMass.setCurrentUsers(mass.getCurrentUsers());
 		showMass.setDailyMinPackages(proMarket.getDailyMinPackages());;
 		showMass.setEndtm(mass.getEndtm());
@@ -120,7 +131,9 @@ public class MassController {
 		showMass.setMktId(mass.getMktId());
 		showMass.setMktNameShow(proMarket.getMktNameShow());
 		showMass.setPicUrl(mass.getPicUrl());
-		showMass.setUseRequire(proMarket.getUseRequire());
+		
+		userRequire = String.format(userRequire, proMarket.getDailyMinPackages(), mass.getLowestFreight());
+		showMass.setUseRequire(userRequire);
 		showMass.setUsersPic(picList);
 		showMass.setWeightMax(proMarket.getWeightMax());
 		showMass.setWeightMin(proMarket.getWeightMin());
@@ -129,6 +142,5 @@ public class MassController {
 		result.setObj(showMass);
 		return result;
 	}
-
 
 }

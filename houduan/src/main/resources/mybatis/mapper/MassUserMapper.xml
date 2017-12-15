@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.easy.dao.MassUserMapper" >
+  
   <resultMap id="BaseResultMap" type="com.easy.domain.MassUser" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="mass_id" property="massId" jdbcType="VARCHAR" />
@@ -12,19 +13,30 @@
     <result column="send_number" property="sendNumber" jdbcType="VARCHAR" />
     <result column="send_weight" property="sendWeight" jdbcType="VARCHAR" />
   </resultMap>
+  
   <sql id="Base_Column_List" >
     id, mass_id, province, address, user_name, phone, head_portrait, send_number, send_weight
   </sql>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from mass_user_info
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <select id="getHeadUrlListByMassId" resultType="java.lang.String" parameterType="java.lang.String" >
+    select 
+    head_portrait
+    from mass_user_info
+    where mass_id = #{massId}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mass_user_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  
   <insert id="insert" parameterType="com.easy.domain.MassUser" >
     insert into mass_user_info (mass_id, province,
       address, user_name, phone, 
@@ -35,6 +47,7 @@
       #{headPortrait,jdbcType=VARCHAR}, #{sendNumber,jdbcType=VARCHAR}, #{sendWeight,jdbcType=VARCHAR}
       )
   </insert>
+  
   <insert id="insertSelective" parameterType="com.easy.domain.MassUser" >
     insert into mass_user_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -96,6 +109,7 @@
       </if>
     </trim>
   </insert>
+  
   <update id="updateByPrimaryKeySelective" parameterType="com.easy.domain.MassUser" >
     update mass_user_info
     <set >
@@ -126,6 +140,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
   <update id="updateByPrimaryKey" parameterType="com.easy.domain.MassUser" >
     update mass_user_info
     set mass_id = #{massId,jdbcType=VARCHAR},
@@ -138,4 +153,5 @@
       send_weight = #{sendWeight,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
 </mapper>

@@ -35,6 +35,7 @@ public class OkHttp3Util {
             Response response = client.newCall(request).execute();
             return response.body().string();
     }
+    private static final String urlPrefix = "";
 
     /**
      * 普通的post请求
@@ -74,9 +75,6 @@ public class OkHttp3Util {
     }
     public static void get(String url, Callback callback) {
         Request request;
-        if (!url.startsWith("http://files")) {
-            url = urlPrefix + url;
-        }
         request = new Request.Builder().url(url).get().build();
         MainApplication.getOkHttpClient().newCall(request).enqueue(callback);
     }
