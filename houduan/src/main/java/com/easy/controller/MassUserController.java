@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /***
  * Created on 2017/11/3 <br>
- * Description: [BookController]<br>
+ * Description: [MassUserController]<br>
  * @author easy
  * @version 1.0
  */

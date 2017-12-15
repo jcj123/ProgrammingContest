@@ -31,110 +31,114 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping("/Mass")
 public class MassController {
 
-	@Autowired
-	private MassService massService;
-	
-	@Autowired
-	private ProMarketService proMarketService;
+  @Autowired
+  private MassService massService;
 
-	public ShowMass createShowMass() {
-		
-		Mass mass = new Mass();
-		ShowMass showMass = new ShowMass();
-		ProMarket proMarket = new ProMarket();
-		
-		//查詢集貨基礎表信息
-		proMarket = proMarketService.selectByPrimaryKey("e174424f-e153-11e7-83f0-00ff8ba56b27");
-		Integer round = proMarket.getGroupDuration();
-		
-		Date now = new Date();
-		Date endDate = new Date(now.getTime() + round*60*1000);
-		
-		mass.setCurrentUsers(0);
-		mass.setEndtm(endDate);
-		mass.setLowestFreight("120");
-		mass.setLowestPrice("6元/1.5KG");
-		mass.setMassType("全國團");
-		mass.setMktId(proMarket.getMktId());
-		mass.setPicUrl("/cc");
-		
-		massService.saveMassInfo(mass);
-		mass = massService.getMassInfo();
-		
-		List<String> picList = new ArrayList<>();
-		
-		showMass.setId(mass.getId());
-		showMass.setCurrentUsers(mass.getCurrentUsers());
-		showMass.setDailyMinPackages(proMarket.getDailyMinPackages());;
-		showMass.setEndtm(mass.getEndtm());
-		showMass.setGroupLimit(proMarket.getGroupLimit());
-		showMass.setLowestFreight(mass.getLowestFreight());
-		showMass.setLowestPrice(mass.getLowestPrice());
-		showMass.setMassType(mass.getMassType());
-		showMass.setMktId(mass.getMktId());
-		showMass.setMktNameShow(proMarket.getMktNameShow());
-		showMass.setPicUrl(mass.getPicUrl());
-		showMass.setUseRequire(proMarket.getUseRequire());
-		showMass.setUsersPic(picList);
-		showMass.setWeightMax(proMarket.getWeightMax());
-		showMass.setWeightMin(proMarket.getWeightMin());
-		
-		return showMass;
-	}
-	
-	@GetMapping("/getShowMass")
-	@ApiOperation(value = "獲取集貨信息")
-	@ApiResponses({
-	          @ApiResponse(code = 201, message = "獲取成功"),
-	          @ApiResponse(code = 500, message = "接口異常"),
-	})
-	public Result<ShowMass> getShowMass() {
-		
-		Result<ShowMass> result = new Result<>();
-		ShowMass showMass = new ShowMass();
-		ProMarket proMarket = new ProMarket();
-		
-		//查詢集貨基礎表信息
-		Mass mass = massService.getMassInfo();
-		proMarket = proMarketService.selectByPrimaryKey(mass.getMktId());
-		
-		if(mass == null || proMarket.getGroupLimit() <= mass.getCurrentUsers() || new Date().after(mass.getEndtm())) {
-			showMass = createShowMass();
-			if(showMass != null) {
-				result.setSuccess(true);
-				result.setObj(showMass);
-			}else {
-				result.setSuccess(false);
-				result.setMessage("获取集货信息失败");
-			}
-			return result;
-		}
-		
-		List<String> picList = new ArrayList<>();
-		String userRequire = proMarket.getUseRequire();
-		
-		showMass.setId(mass.getId());
-		showMass.setCurrentUsers(mass.getCurrentUsers());
-		showMass.setDailyMinPackages(proMarket.getDailyMinPackages());;
-		showMass.setEndtm(mass.getEndtm());
-		showMass.setGroupLimit(proMarket.getGroupLimit());
-		showMass.setLowestFreight(mass.getLowestFreight());
-		showMass.setLowestPrice(mass.getLowestPrice());
-		showMass.setMassType(mass.getMassType());
-		showMass.setMktId(mass.getMktId());
-		showMass.setMktNameShow(proMarket.getMktNameShow());
-		showMass.setPicUrl(mass.getPicUrl());
-		
-		userRequire = String.format(userRequire, proMarket.getDailyMinPackages(), mass.getLowestFreight());
-		showMass.setUseRequire(proMarket.getUseRequire());
-		showMass.setUsersPic(picList);
-		showMass.setWeightMax(proMarket.getWeightMax());
-		showMass.setWeightMin(proMarket.getWeightMin());
-		
-		result.setSuccess(true);
-		result.setObj(showMass);
-		return result;
-	}
+  @Autowired
+  private ProMarketService proMarketService;
+
+  public ShowMass createShowMass() {
+
+    Mass mass = new Mass();
+    ShowMass showMass = new ShowMass();
+    ProMarket proMarket;
+
+    //查詢集貨基礎表信息
+    proMarket = proMarketService.selectByPrimaryKey("e174424f-e153-11e7-83f0-00ff8ba56b27");
+    Integer round = proMarket.getGroupDuration();
+
+    Date now = new Date();
+    Date endDate = new Date(now.getTime() + round * 60 * 1000);
+
+    mass.setCurrentUsers(0);
+    mass.setEndtm(endDate);
+    mass.setLowestFreight("120");
+    mass.setLowestPrice("6元/1.5KG");
+    mass.setMassType("全国货");
+    mass.setMktId(proMarket.getMktId());
+    mass.setPicUrl("/promarket/1.png");
+
+    massService.saveMassInfo(mass);
+    mass = massService.getMassInfo();
+
+    List<String> picList = new ArrayList<>();
+
+    showMass.setId(mass.getId());
+    showMass.setCurrentUsers(mass.getCurrentUsers());
+    showMass.setDailyMinPackages(proMarket.getDailyMinPackages());
+    ;
+    showMass.setEndtm(mass.getEndtm());
+    showMass.setGroupLimit(proMarket.getGroupLimit());
+    showMass.setLowestFreight(mass.getLowestFreight());
+    showMass.setLowestPrice(mass.getLowestPrice());
+    showMass.setMassType(mass.getMassType());
+    showMass.setMktId(mass.getMktId());
+    showMass.setMktNameShow(proMarket.getMktNameShow());
+    showMass.setPicUrl(mass.getPicUrl());
+    showMass.setUseRequire(proMarket.getUseRequire());
+    showMass.setUsersPic(picList);
+    showMass.setWeightMax(proMarket.getWeightMax());
+    showMass.setWeightMin(proMarket.getWeightMin());
+
+    return showMass;
+  }
+
+  @GetMapping("/getShowMass")
+  @ApiOperation(value = "获取集货信息")
+  @ApiResponses({
+      @ApiResponse(code = 201, message = "获取失败"),
+      @ApiResponse(code = 500, message = "接口异常"),
+  })
+  public Result<ShowMass> getShowMass() {
+
+    Result<ShowMass> result = new Result<>();
+    ShowMass showMass = new ShowMass();
+    ProMarket proMarket;
+
+    //查询集货基础信息
+    Mass mass = massService.getMassInfo();
+    proMarket = proMarketService.selectByPrimaryKey(mass.getMktId());
+    //判断信息是否过期
+    if (mass == null || proMarket.getGroupLimit() <= mass.getCurrentUsers() || new Date()
+        .after(mass.getEndtm())) {
+      showMass = createShowMass();
+      if (showMass != null) {
+        result.setSuccess(true);
+        result.setObj(showMass);
+      } else {
+        result.setSuccess(false);
+        result.setMessage("获取集货信息失败");
+      }
+      return result;
+    }
+
+    List<String> picList = new ArrayList<>();
+    String userRequire = proMarket.getUseRequire();
+
+    showMass.setId(mass.getId());
+    showMass.setCurrentUsers(mass.getCurrentUsers());
+    showMass.setDailyMinPackages(proMarket.getDailyMinPackages());
+    ;
+    showMass.setEndtm(mass.getEndtm());
+    showMass.setGroupLimit(proMarket.getGroupLimit());
+    showMass.setLowestFreight(mass.getLowestFreight());
+    showMass.setLowestPrice(mass.getLowestPrice());
+    showMass.setMassType(mass.getMassType());
+    showMass.setMktId(mass.getMktId());
+    showMass.setMktNameShow(proMarket.getMktNameShow());
+    showMass.setPicUrl(mass.getPicUrl());
+
+    userRequire = String
+        .format(userRequire, proMarket.getDailyMinPackages(), mass.getLowestFreight());
+    showMass.setUseRequire(userRequire);
+    showMass.setUsersPic(picList);
+    showMass.setWeightMax(proMarket.getWeightMax());
+    showMass.setWeightMin(proMarket.getWeightMin());
+
+    result.setSuccess(true);
+    result.setObj(showMass);
+    return result;
+  }
 
 
 }
