@@ -15,6 +15,7 @@ import com.easy.domain.Mass;
 import com.easy.domain.ProMarket;
 import com.easy.domain.ShowMass;
 import com.easy.service.MassService;
+import com.easy.service.MassUserService;
 import com.easy.service.ProMarketService;
 
 import io.swagger.annotations.ApiOperation;
@@ -33,6 +34,9 @@ public class MassController {
 
 	@Autowired
 	private MassService massService;
+	
+	@Autowired
+	private MassUserService massUserService;
 	
 	@Autowired
 	private ProMarketService proMarketService;
@@ -110,7 +114,7 @@ public class MassController {
 			return result;
 		}
 		
-		List<String> picList = new ArrayList<>();
+		List<String> picList = massUserService.getHeadUrlListByMassId(mass.getId());
 		String userRequire = proMarket.getUseRequire();
 		
 		showMass.setId(mass.getId());

@@ -1,5 +1,7 @@
 package com.easy.service;
 
+import java.util.List;
+
 import com.easy.domain.MassUser;
 
 /***
@@ -15,5 +17,7 @@ public interface MassUserService {
    * @return
    */
   int insert(MassUser massUser);
+  
+  List<String> getHeadUrlListByMassId(String MassId);
 
 }
