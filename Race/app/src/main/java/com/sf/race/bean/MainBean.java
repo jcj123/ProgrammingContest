@@ -98,4 +98,23 @@ public class MainBean {
     public String getLowestFreight() {
         return lowestFreight;
     }
+
+    @Override
+    public String toString() {
+        return "MainBean{" +
+                "lowestPrice='" + lowestPrice + '\'' +
+                ", lowestFreight='" + lowestFreight + '\'' +
+                ", picUrl='" + picUrl + '\'' +
+                ", massType='" + massType + '\'' +
+                ", endtm='" + endtm + '\'' +
+                ", currentUsers=" + currentUsers +
+                ", usersPic=" + usersPic +
+                ", mktNameShow='" + mktNameShow + '\'' +
+                ", dailyMinPackages=" + dailyMinPackages +
+                ", weightMin='" + weightMin + '\'' +
+                ", weightMax='" + weightMax + '\'' +
+                ", groupLimit=" + groupLimit +
+                ", useRequire='" + useRequire + '\'' +
+                '}';
+    }
 }
