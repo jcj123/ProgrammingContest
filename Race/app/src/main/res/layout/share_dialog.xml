@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="400dp"
+    android:orientation="vertical">
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/wechat_gou"
+        android:layout_marginTop="32dp"
+        android:layout_gravity="center_horizontal"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="报名成功！"
+        android:textSize="@dimen/dimen0"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/color5"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:maxLines="2"
+        android:maxEms="15"
+        android:text="转发给更多朋友或生成图片分享至朋友圈，即可加快集货速度"
+        android:textSize="@dimen/dimen3" />
+    
+    <Button
+        android:id="@+id/share_wechat"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="发送微信好友"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/share_button_wechat"
+        android:textColor="#ffffff"
+        />
+
+    <Button
+        android:id="@+id/share_wechat_group"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/share_button_wechat_group"
+        android:text="分享到朋友圈" />
+</LinearLayout>
