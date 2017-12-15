@@ -21,7 +21,6 @@ import okhttp3.Response;
 
 public class OkHttp3Util {
 
-    private static final String urlPrefix = "https://www.qmshared.com:15001/link/";
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
 
